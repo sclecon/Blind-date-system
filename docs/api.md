@@ -1,15 +1,15 @@
 #### 服务Host
     https://xxx.xxx.com
 #### 接口规范
-##### request body
+###### request body
     {
         ... // 传递的各种参数数据
     }
-##### request header
+###### request header
     {
         authentication: authentication // 用户登录成功token 所有和用户挂钩的接口都需要传递 反则则无需传递 
     }
-##### response
+###### response
     {
         msg: 'success' // 接口返回提示信息
         code: 200 // 接口状态码 目前来说正常返回 状态码均为200 反则则错误
@@ -28,6 +28,7 @@
     }
 ###### response
     {
+        profile: 1 // 资料完善程度 1=已完善 0=未完善
         authentication: 用户登录成功token //接下来所有和用户相关的请求都需要放在header中
     }
 ##### 登录
@@ -41,27 +42,52 @@
     }
 ###### response
     {
+        profile: 1 // 资料完善程度 1=已完善 0=未完善
         authentication: 用户登录成功token //接下来所有和用户相关的请求都需要放在header中
     }
 ##### 发送验证码
 ###### address
-    post /user/login
+    post /utils/send_code
 ###### request
     {
         phone: 手机号
     }
-###### response json
+###### response
     {
         code_id: 验证码ID
     }
 
 #### 活动
 ##### 活动列表
+###### address
+    post /event/list
+###### request
+    {
+        page: 1 // 第几页
+        number: 10 // 一页多少条数据
+    }
 ###### response
     [
-        {image:活动配图,event_id:活动ID,subject:活动标题,starttime:活动开始时间}
+        {
+            image:image // 活动配图
+            event_id:event_id //活动ID
+            subject:subject // 活动标题
+            starttime:starttime // 活动开始时间
+        },
+        {
+            image:image // 活动配图
+            event_id:event_id //活动ID
+            subject:subject // 活动标题
+            starttime:starttime // 活动开始时间
+        }
     ]
 ##### 活动详情
+###### address
+    post /event/detail
+###### request
+    {
+        event_id: 活动ID
+    }
 ###### response
     {
         event_id: 活动ID
