@@ -96,4 +96,35 @@
         join_status: 加入状态 // 1=可加入 0=已结束 2=已加入
         message: 活动详情 // 富文本数据 需要用v-html进行输出
     }
-    
+#### 用户列表
+###### address 
+    post /user/list
+###### request
+    {
+        sex: 1 // 1=男 2=女
+        longitude: longitude // 定位中 经度
+        dimension: dimension // 定位中 维度
+        city: 成都 // 城市名称或城市ID
+        sex: sex // 年龄（可选参数）
+        height: height // 身高（可选参数）
+        live_address: live_address // 居住地址（可选参数）
+        work_address: work_address // 工作地址（可选参数）
+        monthly_income: monthly_income // 月收入（可选参数）
+        eduction: eduction // 学历（可选参数）
+        marriage: marriage // 婚姻状态（可选参数）
+        house_purchase: house_purchase // 购房状态（可选参数）
+        search: search // 搜索框 搜索内容=手机号、用户昵称（可选参数）
+    }
+###### response
+    [
+        {
+            user_id: user_id // 用户ID
+            avatar: avatar // 用户头像
+            vip: 1 // 是否为VIP 1=是 0=否
+            verify: verify // 是否为认证用户 1=是 0=否
+            username: username // 用户昵称
+            age: age // 用户年龄
+            sex: sex // 用户心别 1=男 2=女
+            weight: weight // 用户权重
+        }
+    ]
