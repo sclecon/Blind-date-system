@@ -1,0 +1,1 @@
+-- The create mysql table script file
