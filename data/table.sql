@@ -91,7 +91,7 @@ CREATE TABLE `ea_user_pay` (
     `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
     PRIMARY KEY (`pay_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='VIP购买表';
--- php think curd -t user_pay -r event --foreignKey=user_id --primaryKey=user_id -f 1
+-- php think curd -t user_pay -r user --foreignKey=user_id --primaryKey=user_id -f 1
 
 -- feedback table
 CREATE TABLE `ea_feedback` (

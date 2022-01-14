@@ -17,6 +17,11 @@ class EventJoin extends TimeModel
         return $this->belongsTo('\app\admin\model\Event', 'event_id', 'event_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('\app\admin\model\User', 'user_id', 'user_id');
+    }
+
     
 
 }
