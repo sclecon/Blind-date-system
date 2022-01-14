@@ -33,6 +33,7 @@ CREATE TABLE `ea_user` (
     `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
     PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户信息表';
+-- php think curd -t user
 
 -- news table
 CREATE TABLE `ea_news` (
@@ -45,6 +46,7 @@ CREATE TABLE `ea_news` (
     `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
     PRIMARY KEY (`news_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='广告新闻表';
+-- php think curd -t news
 
 -- event table
 CREATE TABLE `ea_event` (
@@ -59,6 +61,7 @@ CREATE TABLE `ea_event` (
     `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
     PRIMARY KEY (`event_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='活动数据表';
+-- php think curd -t event
 
 -- event_join table
 CREATE TABLE `ea_event_join` (
@@ -71,6 +74,7 @@ CREATE TABLE `ea_event_join` (
     `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
     PRIMARY KEY (`join_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='活动参与表';
+-- php think curd -t event_join -r event --foreignKey=event_id --primaryKey=event_id -f 1
 
 -- user_pay table
 CREATE TABLE `ea_user_pay` (
@@ -87,6 +91,7 @@ CREATE TABLE `ea_user_pay` (
     `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
     PRIMARY KEY (`pay_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='VIP购买表';
+-- php think curd -t user_pay -r event --foreignKey=user_id --primaryKey=user_id -f 1
 
 -- feedback table
 CREATE TABLE `ea_feedback` (
@@ -100,3 +105,4 @@ CREATE TABLE `ea_feedback` (
     `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
     PRIMARY KEY (`feedback_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='意见反馈表';
+-- php think curd -t feedback
