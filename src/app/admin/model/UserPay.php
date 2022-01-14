@@ -12,9 +12,9 @@ class UserPay extends TimeModel
     protected $deleteTime = "delete_time";
 
     
-    public function event()
+    public function user()
     {
-        return $this->belongsTo('\app\admin\model\Event', 'user_id', 'user_id');
+        return $this->belongsTo('\app\admin\model\User', 'user_id', 'user_id');
     }
 
     

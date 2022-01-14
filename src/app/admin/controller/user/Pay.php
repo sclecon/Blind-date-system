@@ -37,11 +37,11 @@ class Pay extends AdminController
             }
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model
-                ->withJoin('event', 'LEFT')
+                ->withJoin('user', 'LEFT')
                 ->where($where)
                 ->count();
             $list = $this->model
-                ->withJoin('event', 'LEFT')
+                ->withJoin('user', 'LEFT')
                 ->where($where)
                 ->page($page, $limit)
                 ->order($this->sort)
