@@ -1,0 +1,40 @@
+version: "3"
+services:
+  nginx:
+    image: "nginx"
+    container_name: "nginx"
+    ports:
+      - "3332:80"
+    volumes:
+      - "./src:/code"
+      - "./config/nginx:/etc/nginx/conf.d"
+  phpfpm:
+    build: "./src"
+    container_name: "php"
+    volumes:
+      - "./src:/code"
+      # - "./apt-sources:/home/apt-sources"
+    ports:
+      - 9000:9000
+    command:
+      - "cd /code && rm -rf composer.lock && composer install"
+  mysql:
+    image: "mysql:8.0"
+    container_name: "mysql"
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "blind"
+      MYSQL_USER: "blind"
+      MYSQL_PASSWORD: "blind"
+    volumes:
+      - "./data/mysql:/var/lib/mysql"
+    command: [ "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci" ]
+  phpmyadmin:
+    image: "phpmyadmin:latest"
+    container_name: "phpmyadmin"
+    ports:
+      - "9500:80"
+    environment:
+      PMA_ARBITRARY: 1
