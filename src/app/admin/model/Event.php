@@ -7,6 +7,8 @@ use app\common\model\TimeModel;
 class Event extends TimeModel
 {
 
+    protected $pk = 'event_id';
+
     protected $name = "event";
 
     protected $deleteTime = "delete_time";

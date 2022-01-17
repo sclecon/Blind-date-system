@@ -44,7 +44,7 @@ class AdminController extends BaseController
      * @var array
      */
     protected $sort = [
-        'id' => 'desc',
+        'create_time' => 'desc',
     ];
 
     /**

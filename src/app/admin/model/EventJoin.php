@@ -7,6 +7,8 @@ use app\common\model\TimeModel;
 class EventJoin extends TimeModel
 {
 
+    protected $pk = 'join_id';
+
     protected $name = "event_join";
 
     protected $deleteTime = "delete_time";

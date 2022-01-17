@@ -7,6 +7,8 @@ use app\common\model\TimeModel;
 class User extends TimeModel
 {
 
+    protected $pk = 'user_id';
+
     protected $name = "user";
 
     protected $deleteTime = "delete_time";
