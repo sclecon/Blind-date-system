@@ -2,25 +2,22 @@ version: "3"
 services:
   nginx:
     image: "nginx"
-    container_name: "nginx"
+    container_name: "blind-nginx"
     ports:
       - "3332:80"
     volumes:
-      - "./src:/code"
+      - "./src:/project"
       - "./config/nginx:/etc/nginx/conf.d"
   phpfpm:
-    build: "./src"
-    container_name: "php"
+    image: 'sclecons/phpfpm:7.4'
+    container_name: "blind-php"
     volumes:
-      - "./src:/code"
-      # - "./apt-sources:/home/apt-sources"
+      - "./src:/project"
     ports:
       - 9000:9000
-    command:
-      - "cd /code && rm -rf composer.lock && composer install"
   mysql:
     image: "mysql:8.0"
-    container_name: "mysql"
+    container_name: "blind-mysql"
     ports:
       - "3307:3306"
     environment:
@@ -33,7 +30,7 @@ services:
     command: [ "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci" ]
   phpmyadmin:
     image: "phpmyadmin:latest"
-    container_name: "phpmyadmin"
+    container_name: "blind-phpmyadmin"
     ports:
       - "9500:80"
     environment:
