@@ -9,7 +9,8 @@ services:
       - "./src:/project"
       - "./config/nginx:/etc/nginx/conf.d"
   phpfpm:
-    image: 'sclecons/phpfpm:7.4'
+    # image: 'sclecons/phpfpm:7.4'
+    build: "src"
     container_name: "blind-php"
     volumes:
       - "./src:/project"
