@@ -16,7 +16,6 @@ use think\facade\Cache;
 
 class ConfigService
 {
-
     public static function getVersion()
     {
         $version = Cache('version');
