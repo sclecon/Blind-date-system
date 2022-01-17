@@ -21,6 +21,7 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak \
         libjpeg62-turbo-dev \
         libpng-dev \
         libzip-dev \
+        iputils-ping \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install zip \

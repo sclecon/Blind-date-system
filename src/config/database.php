@@ -22,7 +22,7 @@ return [
             // 数据库类型
             'type'              => Env::get('database.type', 'mysql'),
             // 服务器地址
-            'hostname'          => Env::get('database.hostname', 'localhost'),
+            'hostname'          => Env::get('database.hostname', 'mysql'),
             // 数据库名
             'database'          => Env::get('database.database', 'blind'),
             // 用户名
