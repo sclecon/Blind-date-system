@@ -139,6 +139,10 @@ class UserService
     }
 
     public function getList(string $sex, string $city, string $longitude, string $dimension){
-
+        $fields = ['user_id', 'phone', 'username', 'avatar', 'remark', 'sex'];
+        $users = $this->userModel
+            ->field($fields)
+            ->select();
+        halt($users);
     }
 }

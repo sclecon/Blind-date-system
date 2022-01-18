@@ -4,6 +4,7 @@ namespace app\connector\controller;
 
 
 use app\connector\exception\HandleException;
+use app\connector\services\UserService;
 use app\connector\utils\Location;
 use think\facade\Db;
 
@@ -24,5 +25,11 @@ class Test
                 ->order($distance_field, 'asc')
                 ->select()
         );
+    }
+
+    public function list(){
+        $user = new UserService();
+        $users = $user->getList(1, '成都', '104.05622442955018', '30.63291510922048');
+        halt($users);
     }
 }
