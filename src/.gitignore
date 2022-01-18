@@ -1,7 +1,6 @@
 /.idea
 /.vscode
 *.log
-config/install/lock/install.lock
 /public/upload
 /public/docs
 runtime/admin

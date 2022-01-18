@@ -1,6 +1,7 @@
 <?php
 namespace app;
 
+use app\connector\response\Json;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\Handle;
@@ -8,6 +9,7 @@ use think\exception\HttpException;
 use think\exception\HttpResponseException;
 use think\exception\ValidateException;
 use think\Response;
+use app\connector\exception\HandleException;
 use Throwable;
 
 /**
@@ -25,6 +27,11 @@ class ExceptionHandle extends Handle
         ModelNotFoundException::class,
         DataNotFoundException::class,
         ValidateException::class,
+        HandleException::class,
+    ];
+
+    protected $output = [
+        HandleException::class
     ];
 
     /**
@@ -50,9 +57,11 @@ class ExceptionHandle extends Handle
      */
     public function render($request, Throwable $e): Response
     {
-        // 添加自定义异常处理机制
-
-        // 其他错误交给系统处理
+        foreach ($this->output as $output){
+            if ($e instanceof $output){
+                return Json::error($e->getMessage(), $e->getCode());
+            }
+        }
         return parent::render($request, $e);
     }
 }

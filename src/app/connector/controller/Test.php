@@ -2,13 +2,14 @@
 
 namespace app\connector\controller;
 
-use think\response\Json;
-use app\connector\utils\DataEncryption;
+
+use app\connector\exception\HandleException;
+use app\connector\response\Json;
 
 class Test
 {
     public function index(){
-        halt(DataEncryption::encode(['code'=>1]), false);
-        halt('debug');
+        throw new HandleException('又抛出一个错误看看');
+        //return Json::success('test susseed');
     }
 }
