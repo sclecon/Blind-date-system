@@ -16,6 +16,8 @@ return [
     'with_event'       => true,
     // 开启应用快速访问
     'app_express'      => true,
+    // 开启多应用
+    'auto_multi_app'   => true,
     // 默认应用
     'default_app'      => 'index',
     // 默认时区

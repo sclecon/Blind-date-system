@@ -4,6 +4,7 @@ namespace app;
 use app\connector\response\Json;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
+use think\exception\FuncNotFoundException;
 use think\exception\Handle;
 use think\exception\HttpException;
 use think\exception\HttpResponseException;
@@ -28,10 +29,14 @@ class ExceptionHandle extends Handle
         DataNotFoundException::class,
         ValidateException::class,
         HandleException::class,
+        FuncNotFoundException::class
     ];
 
     protected $output = [
-        HandleException::class
+        HandleException::class,
+        HttpException::class,
+        ModelNotFoundException::class,
+        FuncNotFoundException::class
     ];
 
     /**
@@ -59,7 +64,9 @@ class ExceptionHandle extends Handle
     {
         foreach ($this->output as $output){
             if ($e instanceof $output){
-                return Json::error($e->getMessage(), $e->getCode());
+                $msg = str_replace("\\", ">", $e->getMessage());
+                $msg = str_replace('>app>', '', $msg);
+                return Json::error($msg, $e->getCode()?:500);
             }
         }
         return parent::render($request, $e);
