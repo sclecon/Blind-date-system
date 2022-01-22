@@ -68,10 +68,10 @@ class SmsSendCode
     }
 
     protected function aliYunSend() : int {
-        $signName = '阿里云短信测试';
-        $appId = 'LTAIwdFnCMoWTqio';
-        $appSecret = 'yPF6QxyPZoiXYHiizt88u0W1vaM2a8';
-        $template = 'SMS_154950909';
+        $signName = sysconfig('sms_aliyun','sms_aliyun_sign');
+        $appId = sysconfig('sms_aliyun','sms_aliyun_appid');
+        $appSecret = sysconfig('sms_aliyun','sms_aliyun_appsecret');
+        $template = sysconfig('sms_aliyun','sms_aliyun_template');
 
         $response = Aliyun::send(
             $appId,

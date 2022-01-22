@@ -11,28 +11,20 @@
 namespace app\connector\controller;
 
 
-use app\admin\model\SendCode;
 use app\BaseController;
-use app\connector\exception\HandleException;
 use app\connector\response\Json;
+use app\connector\services\SendCode;
 use app\connector\services\SmsSendCode;
+use app\connector\utils\Verify;
 
 class Utils extends BaseController
 {
 
     public function send_code(){
-        $phone = $this->request->post('phone', false);
-        if ($phone === false){
-            throw new HandleException('args must phone param');
-        }
-        $code = (new SmsSendCode())->setDriver('aliyun')->setPhone($phone)->send();
-        $send_id = (new SendCode())->insert([
-            'phone' =>  $phone,
-            'code'  =>  $code,
-            'status'=>  0
-        ], true);
+        $input = Verify::get(['phone'], 'post');
+        $code = (new SmsSendCode())->setDriver('aliyun')->setPhone($input->phone)->send();
         return Json::success('send code successfully', [
-            'code_id'   =>  $send_id
+            'code_id'   =>  (new SendCode())->insert($input->phone, $code)
         ]);
     }
 }

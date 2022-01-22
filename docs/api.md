@@ -25,6 +25,8 @@
         sex: 性别 // 1=男 2=女
         msg_id: 验证码ID
         code: 验证码
+        longitude: 经度
+        dimension: 维度
     }
 ###### response
     {

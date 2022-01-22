@@ -60,6 +60,7 @@ class UserService
         $user = [
             'phone'     =>  $phone,
             'sex'       =>  $sex,
+            'username'  =>  $phone,
         ];
         $this->userModel->insert($user);
         return $this->login($phone, $longitude, $dimension);
@@ -144,5 +145,11 @@ class UserService
             ->field($fields)
             ->select();
         halt($users);
+    }
+
+    public function hasPhone(string $phone){
+        return $this->userModel
+            ->where('phone', $phone)
+            ->count() ? true : false;
     }
 }
