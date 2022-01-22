@@ -22,7 +22,7 @@ class Verify
         $data = new stdClass();
         foreach ($params as $param) {
             $data->$param = Request::$method($param, false);
-            if ($data->$param === false){
+            if ($data->$param === false or (is_string($data->$param) and strlen($data->$param) == 0)){
                 throw new HandleException($method.' args list must '.$param.' param');
             }
         }

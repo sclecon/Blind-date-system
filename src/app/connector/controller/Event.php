@@ -2,11 +2,12 @@
 
 namespace app\connector\controller;
 
+use app\BaseController;
 use app\connector\response\Json;
 use app\connector\services\EventService;
 use app\connector\utils\Verify;
 
-class Event
+class Event extends BaseController
 {
     public function list(){
         $default = Verify::default(['page'=>1,'number'=>10, 'flag'=>0], 'post');
