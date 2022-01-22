@@ -106,3 +106,16 @@ CREATE TABLE `ea_feedback` (
     PRIMARY KEY (`feedback_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='意见反馈表';
 -- php think curd -t feedback
+
+-- send_code table
+CREATE TABLE `ea_send_code` (
+    `send_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '数据ID',
+    `phone` varchar(16) NOT NULL COMMENT '手机号 {text}',
+    `code` int(6) NOT NULL COMMENT '验证码 {text}',
+    `status` int(1) NOT NULL DEFAULT 0 COMMENT '数据状态 {radio} (1:验证完成, 0:等待验证)',
+    `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
+    `update_time` int(11) DEFAULT NULL COMMENT '更新时间',
+    `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`send_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='短信发送记录表';
+-- php think curd -t send_code

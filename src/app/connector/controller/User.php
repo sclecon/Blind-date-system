@@ -16,6 +16,6 @@ use app\connector\response\Json;
 class User
 {
     public function register(){
-
+        
     }
 }
