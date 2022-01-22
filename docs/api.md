@@ -94,11 +94,14 @@
     }
 ###### response
     {
-        event_id: 活动ID
-        image: 活动配图
-        subject: 活动标题
-        join_status: 加入状态 // 1=可加入 0=已结束 2=已加入
-        message: 活动详情 // 富文本数据 需要用v-html进行输出
+        "event_id": 1,
+        "image": "http://127.0.0.1:3332/upload/20220122/9609236875bed1e293421ec0d26dd6ba.jpg",
+        "subject": "Coco 成都 2020/7/1国际动漫节 ",
+        "remark": "Coco 成都 2020/7/1国际动漫节 的简单介绍",
+        "message": "&lt;p&gt;Coco 成都 2020/7/1国际动漫节&amp;nbsp;Coco 成都 2020/7/1国际动漫节&amp;nbsp; editor&lt;/p&gt;\n",
+        "start_time": "2022-01-24 00:00:00",
+        "over_time": "2022-01-31 00:00:00",
+        "flag": 1
     }
 #### 用户列表
 ###### address 
