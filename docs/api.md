@@ -207,9 +207,12 @@
 #### 提交反馈
 ###### address 
     post /feedback/send
+###### header
+    {
+        authentication: authentication // 用户token
+    }
 ###### request
     {
-        phone: phone // 联系电话
         message: message // 反馈信息
     }
 ###### response
