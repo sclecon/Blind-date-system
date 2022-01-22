@@ -7,6 +7,12 @@
                 <input type="text" name="subject" class="layui-input" lay-verify="required" placeholder="请输入活动标题" value="">
             </div>
         </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">活动简介</label>
+            <div class="layui-input-block">
+                <textarea name="remark" class="layui-textarea"  placeholder="请输入活动简介"></textarea>
+            </div>
+        </div>
         <div class="layui-form-item">
             <label class="layui-form-label required">封面图</label>
             <div class="layui-input-block layuimini-upload">
@@ -18,17 +24,22 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">活动内容</label>
+            <label class="layui-form-label">活动详情</label>
             <div class="layui-input-block">
-                <textarea name="message" rows="20" class="layui-textarea editor" 活动内容 placeholder="请输入活动内容"></textarea>
+                <textarea name="message" rows="20" class="layui-textarea editor" 活动详情 placeholder="请输入活动详情"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">活动开始时间</label>
+            <div class="layui-input-block">
+                <input type="text" name="start_time" data-date="" data-date-type="date" class="layui-input"  placeholder="请输入活动开始时间" value="">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">活动状态</label>
+            <label class="layui-form-label">活动结束时间</label>
             <div class="layui-input-block">
-                {foreach $getFlagList as $k=>$v}
-                <input type="radio" name="flag" value="{$k}" title="{$v}" {in name="k" value="1"}checked=""{/in}>
-                {/foreach}
+                <input type="text" name="over_time" data-date="" data-date-type="date" class="layui-input"  placeholder="请输入活动结束时间" value="">
             </div>
         </div>
 

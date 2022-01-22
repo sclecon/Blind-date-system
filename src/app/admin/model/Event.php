@@ -11,11 +11,13 @@ class Event extends TimeModel
 
     protected $deleteTime = "delete_time";
 
+    protected $pk = 'event_id';
+
     
     
     public function getFlagList()
     {
-        return ['1'=>'进行中','0'=>'已结束',];
+        return ['1'=>'等待开始', '2'=>'进行中', '3'=>'已结束'];
     }
 
     public function getStatusList()

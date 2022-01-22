@@ -16,3 +16,7 @@ Route::group('user', function(){
 Route::group('utils', function (){
    Route::post('send_code', '\app\connector\controller\Utils::send_code');
 });
+
+Route::group('event', function (){
+   Route::post('list', '\app\connector\controller\Event::list');
+});
