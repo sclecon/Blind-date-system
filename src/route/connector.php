@@ -10,6 +10,7 @@ use think\facade\Route;
  
 Route::group('user', function(){
    Route::post('register', '\app\connector\controller\User::register');
+   Route::post('login', '\app\connector\controller\User::login');
 });
 
 Route::group('utils', function (){

@@ -41,6 +41,8 @@
         phone: 手机号
         msg_id: 验证码ID
         code: 验证码
+        longitude: 经度
+        dimension: 维度
     }
 ###### response
     {

@@ -32,6 +32,8 @@ class User extends BaseController
     }
 
     public function login(){
-
+        $input = Verify::get(['phone', 'msg_id', 'code', 'longitude', 'dimension'], 'post');
+        (new SendCode())->hasMsgId($input->msg_id, $input->phone)->checkCode($input->code);
+        return Json::success('用户登录成功', (new UserService())->login($input->phone, $input->longitude, $input->dimension));
     }
 }
