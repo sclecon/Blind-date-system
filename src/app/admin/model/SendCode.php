@@ -11,6 +11,8 @@ class SendCode extends TimeModel
 
     protected $deleteTime = "delete_time";
 
+    protected $pk = 'send_id';
+
     
     
     public function getStatusList()

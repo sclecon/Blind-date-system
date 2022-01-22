@@ -11,3 +11,7 @@ use think\facade\Route;
 Route::group('user', function(){
    Route::post('register', '\app\connector\controller\User::register');
 });
+
+Route::group('utils', function (){
+   Route::post('send_code', '\app\connector\controller\Utils::send_code');
+});

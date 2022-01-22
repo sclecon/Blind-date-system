@@ -2,6 +2,7 @@
 namespace app;
 
 use app\connector\response\Json;
+use app\connector\services\pay\driver\exception\WeixinException;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\FuncNotFoundException;
@@ -29,14 +30,22 @@ class ExceptionHandle extends Handle
         DataNotFoundException::class,
         ValidateException::class,
         HandleException::class,
-        FuncNotFoundException::class
+        FuncNotFoundException::class,
+        \ErrorException::class,
+        \Error::class,
+        \Exception::class,
+        WeixinException::class,
     ];
 
     protected $output = [
         HandleException::class,
         HttpException::class,
         ModelNotFoundException::class,
-        FuncNotFoundException::class
+        FuncNotFoundException::class,
+        \ErrorException::class,
+        \Error::class,
+        \Exception::class,
+        WeixinException::class,
     ];
 
     /**

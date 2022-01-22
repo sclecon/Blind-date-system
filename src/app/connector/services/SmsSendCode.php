@@ -35,7 +35,7 @@ class SmsSendCode
 
     public function setDriver(string $driver) : SmsSendCode {
         if (in_array($driver, $this->drivers) === false){
-            throw new HandleException('your setting code Driver is invalid', 500);
+            throw new HandleException('your setting code Driver is invalid');
         }
         $this->driver = $driver;
         return $this;
@@ -56,13 +56,13 @@ class SmsSendCode
 
     protected function checkParams(){
         if ($this->getDriver() === null){
-            throw new HandleException('You have not set SMS Base Driver', 500);
+            throw new HandleException('You have not set SMS Base Driver');
         }
         if ($this->getPhone() === null){
-            throw new HandleException('You have not set SMS phone Number', 500);
+            throw new HandleException('You have not set SMS phone Number');
         }
         if ($this->getCode() === null){
-            throw new HandleException('You have not create or transfer SMS Template Extend Code', 500);
+            throw new HandleException('You have not create or transfer SMS Template Extend Code');
         }
         return true;
     }
