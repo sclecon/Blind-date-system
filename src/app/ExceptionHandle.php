@@ -75,7 +75,9 @@ class ExceptionHandle extends Handle
             if ($e instanceof $output){
                 $msg = str_replace("\\", ">", $e->getMessage());
                 $msg = str_replace('>app>', '', $msg);
-                return Json::error($msg, $e->getCode()?:500);
+                if (strlen($msg)){
+                    return Json::error($msg, $e->getCode()?:500);
+                }
             }
         }
         return parent::render($request, $e);

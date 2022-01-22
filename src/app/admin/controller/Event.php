@@ -23,6 +23,8 @@ class Event extends AdminController
         
         $this->assign('getFlagList', $this->model->getFlagList());
 
+        $this->assign('getStatusList', $this->model->getStatusList());
+
     }
 
     

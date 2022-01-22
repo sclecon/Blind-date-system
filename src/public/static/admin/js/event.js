@@ -17,7 +17,14 @@ define(["jquery", "easy-admin"], function ($, ea) {
             ea.table.render({
                 init: init,
                 cols: [[
-                    {type: 'checkbox'},                    {field: 'event_id', title: '活动ID'},                    {field: 'subject', title: '活动标题'},                    {field: 'image', title: '封面图', templet: ea.table.image},                    {field: 'flag', search: 'select', selectList: {"1":"进行中","0":"已结束"}, title: '活动状态'},                    {field: 'status', title: '数据状态', templet: ea.table.switch},                    {field: 'create_time', title: '创建时间'},                    {width: 250, title: '操作', templet: ea.table.tool},
+                    {type: 'checkbox'},
+                    {field: 'event_id', title: '活动ID'},
+                    {field: 'subject', title: '活动标题'},
+                    {field: 'image', title: '封面图', templet: ea.table.image},
+                    {field: 'flag', search: 'select', selectList: {"1":"进行中","0":"已结束"}, title: '活动状态'},
+                    {field: 'status', search: 'select', selectList: {"1":"正常","0":"已删除"}, title: '数据状态'},
+                    {field: 'create_time', title: '创建时间'},
+                    {width: 250, title: '操作', templet: ea.table.tool},
                 ]],
             });
 

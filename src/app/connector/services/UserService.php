@@ -39,10 +39,11 @@ class UserService
     }
 
     public function setLocation(string $phone, string $longitude, string $dimension){
-        return $this->userModel->data([
+        return $this->userModel->where('phone', $phone)->save([
             'longitude' =>  $longitude,
-            'dimension' =>  $dimension
-        ])->where('phone', $phone)->save();
+            'dimension' =>  $dimension,
+            'update_time'   =>  time(),
+        ]);
     }
 
     public function getUserBySign(string $sign){
@@ -61,6 +62,7 @@ class UserService
             'phone'     =>  $phone,
             'sex'       =>  $sex,
             'username'  =>  $phone,
+            'create_time'=> time(),
         ];
         $this->userModel->insert($user);
         return $this->login($phone, $longitude, $dimension);

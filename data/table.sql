@@ -55,13 +55,13 @@ CREATE TABLE `ea_event` (
     `image` varchar(255) NOT NULL COMMENT '封面图 {image}',
     `message` text NOT NULL COMMENT '活动内容 {editor}',
     `flag` int(1) NOT NULL DEFAULT 1 COMMENT '活动状态 {radio} (1:进行中, 0:已结束)',
-    `status` int(1) NOT NULL DEFAULT 1 COMMENT '数据状态',
+    `status` int(1) NOT NULL DEFAULT 1 COMMENT '数据状态 {radio} (1:正常, 0:已删除)',
     `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
     `update_time` int(11) DEFAULT NULL COMMENT '更新时间',
     `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
     PRIMARY KEY (`event_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='活动数据表';
--- php think curd -t event
+-- php think curd -t event -f 1
 
 -- event_join table
 CREATE TABLE `ea_event_join` (
