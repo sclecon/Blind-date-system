@@ -18,7 +18,7 @@ Route::group('user', function(){
 
 Route::group('utils', function (){
    Route::post('send_code', '\app\connector\controller\Utils::send_code');
-   Route::post('upload/image', '');
+   Route::post('upload/image', '\app\connector\controller\Utils::upload_image');
 });
 
 Route::group('event', function (){
@@ -33,11 +33,11 @@ Route::group('feedback', function (){
 })->middleware(AuthMiddleware::class);
 
 Route::group('news', function (){
-   Route::post('list', '');
-   Route::post('detail', '');
+   // Route::post('list', '');
+   // Route::post('detail', '');
 });
 
 Route::group('order', function (){
-    Route::post('create', '');
-    Route::post('status', '');
+    // Route::post('create', '');
+    // Route::post('status', '');
 })->middleware(AuthMiddleware::class);
