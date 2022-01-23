@@ -7,30 +7,37 @@
  * Time 2022/1/22 9:27
  */
 use think\facade\Route;
+use \app\connector\middleware\AuthMiddleware;
  
 Route::group('user', function(){
    Route::post('register', '\app\connector\controller\User::register');
    Route::post('login', '\app\connector\controller\User::login');
+   // Route::post('avatar', '\app\connector\controller\User::avatar')->middleware(AuthMiddleware::class);
+   // Route::post('profile', '\app\connector\controller\User::profile')->middleware(AuthMiddleware::class);
 });
 
 Route::group('utils', function (){
    Route::post('send_code', '\app\connector\controller\Utils::send_code');
+   Route::post('upload/image', '');
 });
 
 Route::group('event', function (){
    Route::post('list', '\app\connector\controller\Event::list');
    Route::post('detail', '\app\connector\controller\Event::detail');
+   Route::post('join', '\app\connector\controller\Event::join')->middleware(AuthMiddleware::class);
+   Route::post('logs', '\app\connector\controller\Event::logs')->middleware(AuthMiddleware::class);
 });
 
-Route::post('/feedback/send', '\app\connector\controller\Feedback::send')
-    ->middleware(\app\connector\middleware\AuthMiddleware::class);
+Route::group('feedback', function (){
+    Route::post('send', '\app\connector\controller\Feedback::send');
+})->middleware(AuthMiddleware::class);
 
-// 用户列表
-// 用户详情
-// 下单支付
-// 获取支付结果
-// 修改头像
-// 编辑资料
-// 我参与的活动
-// 广告新闻列表
-// 广告新闻详情
+Route::group('news', function (){
+   Route::post('list', '');
+   Route::post('detail', '');
+});
+
+Route::group('order', function (){
+    Route::post('create', '');
+    Route::post('status', '');
+})->middleware(AuthMiddleware::class);
