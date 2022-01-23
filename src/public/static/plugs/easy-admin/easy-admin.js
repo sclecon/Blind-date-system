@@ -481,7 +481,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 return html;
             },
             toolSpliceUrl(url, field, data) {
-                url = url.indexOf("?") !== -1 ? url + '&' + field + '=' + data[field] : url + '?' + field + '=' + data[field];
+                url = url.indexOf("?") !== -1 ? url + '&' + 'id' + '=' + data[field] : url + '?' + 'id' + '=' + data[field];
                 return url;
             },
             formatCols: function (cols, init) {
@@ -550,10 +550,11 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                     if (typeof item === 'string') {
                         switch (item) {
                             case 'edit':
+                                console.log(option, 'option')
                                 var operat = {
                                     class: 'layui-btn layui-btn-success layui-btn-xs',
                                     method: 'open',
-                                    field: 'id',
+                                    field: option.init.pk || 'id',
                                     icon: '',
                                     text: '编辑',
                                     title: '编辑信息',
@@ -570,7 +571,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                                 var operat = {
                                     class: 'layui-btn layui-btn-danger layui-btn-xs',
                                     method: 'get',
-                                    field: 'id',
+                                    field: option.init.pk || 'id',
                                     icon: '',
                                     text: '删除',
                                     title: '确定删除？',

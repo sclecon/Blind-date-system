@@ -17,6 +17,7 @@ use app\connector\response\Json;
 use app\connector\services\SendCode;
 use app\connector\services\UserService;
 use app\connector\utils\Verify;
+use think\facade\Config;
 
 class User extends BaseController
 {
@@ -35,5 +36,17 @@ class User extends BaseController
         $input = Verify::get(['phone', 'msg_id', 'code', 'longitude', 'dimension'], 'post');
         (new SendCode())->hasMsgId($input->msg_id, $input->phone)->checkCode($input->code);
         return Json::success('用户登录成功', (new UserService())->login($input->phone, $input->longitude, $input->dimension));
+    }
+
+    public function avatar(){
+        $input = Verify::get(['avatar'], 'post');
+        (new UserService())->upgradeAvatar(Config::get('user.id'), Config::get('user.phone'), $input->avatar);
+        return Json::success('更新头像成功', ['avatar'=>$input->avatar]);
+    }
+
+    public function profile(){
+        $userService = new UserService();
+        $user = $userService->getDetail(Config::get('user.phone'));
+        return Json::success('tests', $user);
     }
 }

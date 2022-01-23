@@ -154,4 +154,20 @@ class UserService
             ->where('phone', $phone)
             ->count() ? true : false;
     }
+
+    public function update(string $user_id, string $phone, array $data) : bool {
+        return $this->userModel
+            ->where('user_id', $user_id)
+            ->where('phone', $phone)
+            ->save($data);
+    }
+
+    public function upgradeAvatar(string $user_id, string $phone, $avatar) : bool {
+        $avatar = is_array($avatar) ? implode('|', $avatar) : $avatar;
+        $flag = $this->update($user_id, $phone, ['avatar'=>$avatar]);
+        if ($flag === false){
+            throw new HandleException('更新头像失败');
+        }
+        return $flag;
+    }
 }

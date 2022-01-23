@@ -12,8 +12,9 @@ use \app\connector\middleware\AuthMiddleware;
 Route::group('user', function(){
    Route::post('register', '\app\connector\controller\User::register');
    Route::post('login', '\app\connector\controller\User::login');
-   // Route::post('avatar', '\app\connector\controller\User::avatar')->middleware(AuthMiddleware::class);
-   // Route::post('profile', '\app\connector\controller\User::profile')->middleware(AuthMiddleware::class);
+   Route::post('avatar', '\app\connector\controller\User::avatar')->middleware(AuthMiddleware::class);
+   Route::post('profile', '\app\connector\controller\User::profile')->middleware(AuthMiddleware::class);
+   // Route::post('list', '\app\connector\controller\User::list')->middleware(AuthMiddleware::class);
 });
 
 Route::group('utils', function (){
