@@ -294,16 +294,16 @@
         },
         {
             "name": "alibabacloud/dysmsapi-20170525",
-            "version": "2.0.8",
+            "version": "2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alibabacloud-sdk-php/Dysmsapi-20170525.git",
-                "reference": "83501c93a869c52e77fca204d2ae802926f36612"
+                "reference": "f3098cdd4196aa42413e60fececcea08a3374ff1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alibabacloud-sdk-php/Dysmsapi-20170525/zipball/83501c93a869c52e77fca204d2ae802926f36612",
-                "reference": "83501c93a869c52e77fca204d2ae802926f36612",
+                "url": "https://api.github.com/repos/alibabacloud-sdk-php/Dysmsapi-20170525/zipball/f3098cdd4196aa42413e60fececcea08a3374ff1",
+                "reference": "f3098cdd4196aa42413e60fececcea08a3374ff1",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -313,9 +313,9 @@
                 ]
             },
             "require": {
-                "alibabacloud/darabonba-openapi": "^0.2.3",
+                "alibabacloud/darabonba-openapi": "^0.2.5",
                 "alibabacloud/endpoint-util": "^0.1.0",
-                "alibabacloud/openapi-util": "^0.1.9",
+                "alibabacloud/openapi-util": "^0.1.10",
                 "alibabacloud/tea-utils": "^0.2.0",
                 "php": ">5.5"
             },
@@ -337,9 +337,9 @@
             ],
             "description": "Alibaba Cloud Dysmsapi (20170525) SDK Library for PHP",
             "support": {
-                "source": "https://github.com/alibabacloud-sdk-php/Dysmsapi-20170525/tree/2.0.8"
+                "source": "https://github.com/alibabacloud-sdk-php/Dysmsapi-20170525/tree/2.0.9"
             },
-            "time": "2021-11-29T06:08:47+00:00"
+            "time": "2022-01-24T07:38:41+00:00"
         },
         {
             "name": "alibabacloud/endpoint-util",

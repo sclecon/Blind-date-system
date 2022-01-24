@@ -47,6 +47,50 @@ class User extends BaseController
     public function profile(){
         $userService = new UserService();
         $user = $userService->getDetail(Config::get('user.phone'));
-        return Json::success('tests', $user);
+        $input = (array) Verify::default([
+            'username'  =>  $user['username'],
+            'remark'  =>  $user['remark'],
+            'edu'  =>  $user['edu'],
+            'sex'  =>  $user['sex'],
+            'birthday'  =>  $user['birthday'],
+            'height'  =>  $user['height'],
+            'city'  =>  $user['city'],
+            'address'  =>  $user['address'],
+            'marriage'  =>  $user['marriage'],
+            'children'  =>  $user['children'],
+            'native'  =>  $user['native'],
+            'nation'  =>  $user['nation'],
+            'blood'  =>  $user['blood'],
+            'weight'  =>  $user['weight'],
+            'occupation'  =>  $user['occupation'],
+            'school'  =>  $user['school'],
+            'major'  =>  $user['major'],
+            'house'  =>  $user['house'],
+            'car_buy'  =>  $user['car_buy'],
+        ], 'post');
+        foreach ($input as $field => $item) {
+            if ($user[$field] === $item){
+                unset($input[$field]);
+                continue;
+            }
+            if (is_null($item)){
+                $input[$field] = '';
+            }
+        }
+        if (count($input) > 0) {
+            $userService->update(Config::get('user.id'), Config::get('user.phone'), $input);
+        }
+        return Json::success('upgrade user profile successfully', $input);
+    }
+
+    public function detail(){
+        $header = Verify::default(['authentication'=>''], 'header');
+        if (strlen($header->authentication) === 0){
+            $input = Verify::get(['user_id'], 'post');
+        }else{
+            (new UserService())->decode($header->authentication);
+            $input = Verify::default(['user_id'=>Config::get('user.id')], 'post');
+        }
+        return Json::success('get user detail successfully', (new UserService())->getDetailByUserId($input->user_id)->toArray());
     }
 }

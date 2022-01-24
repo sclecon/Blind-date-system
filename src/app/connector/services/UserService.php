@@ -2,7 +2,9 @@
 namespace app\connector\services;
 use app\admin\model\User;
 use app\connector\exception\HandleException;
+use app\connector\response\Json;
 use app\connector\utils\DataEncryption;
+use think\facade\Config;
 
 class UserService
 {
@@ -137,7 +139,19 @@ class UserService
     public function getDetail($phone){
         $user = $this->getUserByPhone($phone)->toArray();
         unset($user['status'], $user['update_time'], $user['delete_time']);
-        $user['create_time'] = date('Y-m-d H:i:s', $user['create_time']);
+        $user['avatar'] = explode('|', $user['avatar']);
+        return $user;
+    }
+
+    public function getDetailByUserId(string $user_id){
+        $user = $this->userModel
+            ->where('user_id', $user_id)
+            ->find();
+        if (is_null($user)){
+            throw new HandleException('get user detail fail, user non-existent', 404);
+        }
+        unset($user['status'], $user['update_time'], $user['delete_time']);
+        $user['avatar'] = explode('|', $user['avatar']);
         return $user;
     }
 
@@ -149,10 +163,10 @@ class UserService
         halt($users);
     }
 
-    public function hasPhone(string $phone){
-        return $this->userModel
+    public function hasPhone(string $phone) : bool {
+        return ($this->userModel
             ->where('phone', $phone)
-            ->count() ? true : false;
+            ->count() > 1) ? true : false;
     }
 
     public function update(string $user_id, string $phone, array $data) : bool {
@@ -169,5 +183,16 @@ class UserService
             throw new HandleException('更新头像失败');
         }
         return $flag;
+    }
+
+    public function decode(string $authentication){
+        $user = DataEncryption::decode($authentication);
+        if (is_null($user)){
+            throw new HandleException('用户凭证错误', 502);
+        }
+        if ($user['expire'] < time()){
+            throw new HandleException('用户登录信息已过期，请重新登录', 504);
+        }
+        return Config::set(['id'=>$user['user_id'], 'phone'=>$user['phone']], 'user');
     }
 }

@@ -15,8 +15,8 @@ use Throwable;
 
 class HandleException extends \Exception
 {
-    public function __construct($message = "")
+    public function __construct(string $message, int $errCode = 500)
     {
-        parent::__construct($message, 500);
+        parent::__construct($message, $errCode);
     }
 }
