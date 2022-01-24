@@ -15,7 +15,7 @@ Route::group('user', function(){
    Route::post('upgrade/avatar', '\app\connector\controller\User::avatar')->middleware(AuthMiddleware::class);
    Route::post('upgrade/profile', '\app\connector\controller\User::profile')->middleware(AuthMiddleware::class);
    Route::post('detail', '\app\connector\controller\User::detail');
-   // Route::post('list', '\app\connector\controller\User::list')->middleware(AuthMiddleware::class);
+   Route::post('list', '\app\connector\controller\User::list')->middleware(AuthMiddleware::class);
 });
 
 Route::group('utils', function (){
@@ -42,4 +42,5 @@ Route::group('news', function (){
 Route::group('order', function (){
     // Route::post('create', '');
     // Route::post('status', '');
+    // Route::post('query', '');
 })->middleware(AuthMiddleware::class);

@@ -93,4 +93,23 @@ class User extends BaseController
         }
         return Json::success('get user detail successfully', (new UserService())->getDetailByUserId($input->user_id)->toArray());
     }
+
+    public function list(){
+        $input = Verify::get(['sex', 'city', 'longitude', 'dimension'], 'post');
+        $default = Verify::default([
+            'age'               =>  false,
+            'height'            =>  false,
+            'live_address'      =>  false,
+            'work_address'      =>  false,
+            'monthly_income'    =>  false,
+            'eduction'          =>  false,
+            'marriage'          =>  false,
+            'house_purchase'    =>  false,
+            'search'            =>  false
+        ], 'post');
+        return Json::success('get user list', [
+            'input' =>  (array) $input,
+            'more'  =>  (array) $default
+        ]);
+    }
 }
