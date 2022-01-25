@@ -17,6 +17,7 @@ class News extends BaseController
     }
 
     public function detail(){
-        return Json::success('get news detail successfully', []);
+        $input = Verify::get(['news_id'], 'post');
+        return Json::success('get news detail successfully', (new NewsService())->getDetail($input->news_id)->toArray());
     }
 }

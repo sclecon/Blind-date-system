@@ -26,7 +26,7 @@ class NewsService
             ->field('news_id, subject, message, create_time')
             ->find();
         if (is_null($news)){
-            throw new HandleException('get news detail fail, news is null', 404);
+            throw new HandleException('获取详情失败，新闻广告不存在', 404);
         }
         return $news;
     }
