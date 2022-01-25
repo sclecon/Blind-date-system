@@ -40,7 +40,7 @@ Route::group('news', function (){
 });
 
 Route::group('order', function (){
-    // Route::post('create', '');
+    Route::post('create', '\app\connector\controller\Order::create');
     // Route::post('status', '');
     // Route::post('query', '');
 })->middleware(AuthMiddleware::class);

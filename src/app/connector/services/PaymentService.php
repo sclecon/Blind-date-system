@@ -27,7 +27,7 @@ class PaymentService
         return $this->driver->getList($support);
     }
 
-    public function setOrder(string $support, string $driver, string $order_id, string $total_fee, string $subject) : PaymentService {
+    public function setOrder(string $support, string $driver, string $order_id, string $total_fee, string $subject, ...$params) : PaymentService {
         $this->driver->checkDrivers($driver, $support);
         if (is_numeric($total_fee) === false){
             throw new \Exception('total_fee must be an integer or float');
@@ -37,7 +37,8 @@ class PaymentService
             'driver'    =>  $driver,
             'order_id'  =>  $order_id,
             'total_fee' =>  $total_fee,
-            'subject'   =>  $subject
+            'subject'   =>  $subject,
+            'params'    =>  $params
         ];
         return $this;
     }
@@ -46,10 +47,11 @@ class PaymentService
         if (is_null($this->order)){
             throw new \Exception('Run pay Action before must run setOrder');
         }
-        $response = $this->driver
-            ->getDriver($this->order['driver'])
-            ->pay($this->order['support'], $this->order['order_id'], $this->order['total_fee'], $this->order['subject']);
-        return $response;
+        $derve = $this->driver->getDriver($this->order['driver']);
+        if ($this->order['driver'] === 'weixin' && is_string($this->order['params'][0])){
+            $derve = $derve->setOpenID($this->order['params'][0]);
+        }
+        return $derve->pay($this->order['support'], $this->order['order_id'], $this->order['total_fee'], $this->order['subject']);
     }
 
     public function query(string $driver, string $order_id, string $id_type = 'out_trade_no'){

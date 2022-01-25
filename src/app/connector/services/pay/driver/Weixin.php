@@ -11,6 +11,7 @@
 namespace app\connector\services\pay\driver;
 
 
+use app\connector\exception\HandleException;
 use EasyWeChat\Factory;
 use EasyWeChat\Payment\Application;
 use app\connector\services\pay\driver\exception\WeixinException;
@@ -23,6 +24,12 @@ class Weixin implements PayPort
 
     protected $name = '微信';
     protected $sandbox = false;
+    protected $openid;
+
+    public function setOpenID(string $openid) : Weixin {
+        $this->openid = $openid;
+        return $this;
+    }
 
     public function pay(string $support, string $order_id, string $total_fee, string $subject): array
     {
@@ -93,28 +100,41 @@ class Weixin implements PayPort
     }
 
     protected function OrderUnifyByH5() : array {
+        if (is_null($this->getOpenId())){
+            throw new HandleException('weixin payment openid is null', 500);
+        }
         return ['trade_type'=>'JSAPI', 'openid'=>$this->getOpenId()];
     }
 
     protected function OrderUnifyByWx() : array {
+        if (is_null($this->getOpenId())){
+            throw new HandleException('weixin payment openid is null', 500);
+        }
         return ['trade_type'=>'JSAPI', 'openid'=>$this->getOpenId()];
     }
 
     protected function OrderUnifyByMiniApp() : array {
+        if (is_null($this->getOpenId())){
+            throw new HandleException('weixin payment openid is null', 500);
+        }
         return ['trade_type'=>'JSAPI', 'openid'=>$this->getOpenId()];
     }
 
     public function getConfig(): array
     {
         $config = [
-            'app_id' =>  '...',
-            'mch_id' =>  '...',
-            'key'   =>  '...',
-            'secret'=>  '...'
+            'app_id'    =>  sysconfig('pay', 'pay_weixin_appid'),
+            'secret'    =>  sysconfig('pay', 'pay_weixin_secret'),
+            'mch_id'    =>  sysconfig('pay', 'pay_weixin_mch_id'),
+            'key'       =>  sysconfig('pay', 'pay_weixin_mch_key'),
         ];
         $config['sandbox'] = $this->sandbox;
-        $config['notify_url'] = 'https://www.baidu.com/order';
+        $config['notify_url'] = $this->getNotifyUrl();
         return $config;
+    }
+
+    protected function getNotifyUrl(){
+        return url('connector/order/notify', [], true, true)->build();
     }
 
     protected function getAppClient() : Application {
@@ -127,6 +147,7 @@ class Weixin implements PayPort
     }
 
     protected function getOpenId(){
-        return 'ovuZIwgm0P38tOUj8jdmfJwlvCug';
+        return $this->openid;
+        // return 'ovuZIwgm0P38tOUj8jdmfJwlvCug';
     }
 }
