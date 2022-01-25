@@ -15,6 +15,7 @@ class NewsService
     public function getList(string $page, string $number, $order = 'desc'){
         return $this->getModel()
             ->page($page, $number)
+            ->field('news_id, subject, create_time')
             ->order('news_id', $order)
             ->select();
     }
@@ -22,6 +23,7 @@ class NewsService
     public function getDetail(string $news_id){
         $news = $this->getModel()
             ->where('news_id', $news_id)
+            ->field('news_id, subject, message, create_time')
             ->find();
         if (is_null($news)){
             throw new HandleException('get news detail fail, news is null', 404);

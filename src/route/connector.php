@@ -35,8 +35,8 @@ Route::group('feedback', function (){
 })->middleware(AuthMiddleware::class);
 
 Route::group('news', function (){
-   // Route::post('list', '');
-   // Route::post('detail', '');
+   Route::post('list', '\app\connector\controller\News::list');
+   Route::post('detail', '\app\connector\controller\News::detail');
 });
 
 Route::group('order', function (){
