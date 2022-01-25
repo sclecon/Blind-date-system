@@ -1,0 +1,49 @@
+<form id="app-form" class="layui-form layuimini-form">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">APPID</label>
+        <div class="layui-input-block">
+            <input type="text" name="pay_weixin_appid" class="layui-input" lay-verify="required" placeholder="请输入APPID" value="{:sysconfig('pay','pay_weixin_appid')}">
+            <tip>小程序的APPID</tip>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">SECRET</label>
+        <div class="layui-input-block">
+            <input type="text" name="pay_weixin_secret" class="layui-input" lay-verify="required" placeholder="请输入SECRET" value="{:sysconfig('pay','pay_weixin_secret')}">
+            <tip>小程序的SECRET</tip>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">MCHID</label>
+        <div class="layui-input-block">
+            <input type="text" name="pay_weixin_mch_id" class="layui-input" lay-verify="required" placeholder="请输入MCHID" value="{:sysconfig('pay','pay_weixin_mch_id')}">
+            <tip>微信支付的商户ID</tip>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">MCHKEY</label>
+        <div class="layui-input-block">
+            <input type="text" name="pay_weixin_mch_key" class="layui-input" lay-verify="required" placeholder="请输入MCHKEY" value="{:sysconfig('pay','pay_weixin_mch_key')}">
+            <tip>微信支付的商户KEY</tip>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">订单金额</label>
+        <div class="layui-input-block">
+            <input type="text" name="pay_total" class="layui-input" lay-verify="required" placeholder="请输入订单金额" value="{:sysconfig('pay','pay_total')}">
+            <tip>授权查看用户手机号需支付的费用</tip>
+        </div>
+    </div>
+
+    <div class="hr-line"></div>
+    <div class="layui-form-item text-center">
+        <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="system.config/save" data-refresh="false">确认</button>
+        <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+    </div>
+
+</form>
