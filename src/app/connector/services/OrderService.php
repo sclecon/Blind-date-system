@@ -3,6 +3,7 @@
 namespace app\connector\services;
 
 use app\admin\model\UserPay;
+use app\connector\exception\HandleException;
 use app\connector\utils\traits\BaseModelService;
 
 class OrderService
@@ -24,6 +25,18 @@ class OrderService
             'order_id'  =>  $orderData['order_id'],
             'config'    =>  $payConfig['data']
         ];
+    }
+
+    public function getOrderStatus(string $user_id, string $order_id) : int {
+        $order = $this->getModel()
+            ->where('order_id', $order_id)
+            ->where('user_id', $user_id)
+            ->field('flag')
+            ->find();
+        if (is_null($order)){
+            throw new HandleException('订单不存在', 404);
+        }
+        return intval($order->flag);
     }
 
     protected function createOrderId(){

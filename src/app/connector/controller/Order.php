@@ -17,7 +17,11 @@ class Order extends BaseController
     }
 
     public function status(){
-
+        $input = Verify::get(['order_id'], 'post');
+        return Json::success('get order status successfully', [
+            'order_id'      =>  $input->order_id,
+            'status'        =>  (new OrderService())->getOrderStatus(Config::get('user.id'), $input->order_id)
+        ]);
     }
 
     public function query(){

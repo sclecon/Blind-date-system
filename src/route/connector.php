@@ -41,6 +41,6 @@ Route::group('news', function (){
 
 Route::group('order', function (){
     Route::post('create', '\app\connector\controller\Order::create');
-    // Route::post('status', '');
-    // Route::post('query', '');
+    Route::post('status', '\app\connector\controller\Order::status');
+    Route::post('query', '\app\connector\controller\Order::query');
 })->middleware(AuthMiddleware::class);
