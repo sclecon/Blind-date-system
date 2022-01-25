@@ -11,7 +11,7 @@ use think\facade\Config;
 class Order extends BaseController
 {
     public function create(){
-        $input  = Verify::get(['user_id', 'code'], 'post');
+        $input = Verify::get(['user_id', 'code'], 'post');
         $order = (new OrderService())->createOrder(Config::get('user.id'), $input->user_id, $input->code);
         return Json::success('create order successfully', $order);
     }
@@ -25,6 +25,10 @@ class Order extends BaseController
     }
 
     public function query(){
-
+        $input = Verify::get(['user_id'], 'post');
+        return Json::success('query user buy status successfully', [
+           'user_id'    =>  $input->user_id,
+           'status'     =>  (new OrderService())->findUserBuyer(Config::get('user.id'), $input->user_id)
+        ]);
     }
 }

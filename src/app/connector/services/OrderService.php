@@ -39,6 +39,15 @@ class OrderService
         return intval($order->flag);
     }
 
+    public function findUserBuyer(string $user_id, string $buy_user_id){
+        $order = $this->getModel()
+            ->where('buy_user_id', $buy_user_id)
+            ->where('user_id', $user_id)
+            ->field('flag')
+            ->find();
+        return is_null($order) ? 0 : $order->flag;
+    }
+
     protected function createOrderId(){
         return time().rand(100000, 999999);
     }
