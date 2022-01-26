@@ -28,10 +28,10 @@ class SendCode
             throw new HandleException('验证码不存在');
         }
         if ($this->data->status == 1){
-            // throw new HandleException('验证码无效');
+            throw new HandleException('验证码无效');
         }
         if ($this->data->getData('create_time')+60 < time()){
-            // throw new HandleException('验证码超时');
+            /throw new HandleException('验证码超时');
         }
         return $this;
     }

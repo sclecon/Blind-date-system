@@ -185,9 +185,10 @@ class UserService
     }
 
     public function hasPhone(string $phone) : bool {
-        return ($this->userModel
+        $phone = $this->userModel
             ->where('phone', $phone)
-            ->count() > 1) ? true : false;
+            ->value('phone');
+        return strlen($phone) ? true : false;
     }
 
     public function update(string $user_id, string $phone, array $data) : bool {
