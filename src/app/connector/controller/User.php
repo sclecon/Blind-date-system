@@ -99,17 +99,18 @@ class User extends BaseController
         $default = Verify::default([
             'age'               =>  false,
             'height'            =>  false,
-            'live_address'      =>  false,
-            'work_address'      =>  false,
-            'monthly_income'    =>  false,
-            'eduction'          =>  false,
+            'address'           =>  false,
+            'income'            =>  false,
+            'edu'               =>  false,
             'marriage'          =>  false,
-            'house_purchase'    =>  false,
-            'search'            =>  false
+            'house'             =>  false,
+            'search'            =>  false,
+            'page'              =>  1,
+            'number'            =>  10,
         ], 'post');
+        $list = (new UserService())->getList($default->page, $default->number, $input->sex, $input->city, $input->longitude, $input->dimension, (array) $default);
         return Json::success('get user list', [
-            'input' =>  (array) $input,
-            'more'  =>  (array) $default
+            'list'  =>  $list,
         ]);
     }
 }

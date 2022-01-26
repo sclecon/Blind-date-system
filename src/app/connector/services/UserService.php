@@ -4,6 +4,7 @@ use app\admin\model\User;
 use app\connector\exception\HandleException;
 use app\connector\response\Json;
 use app\connector\utils\DataEncryption;
+use app\connector\utils\Location;
 use think\facade\Config;
 
 class UserService
@@ -155,12 +156,23 @@ class UserService
         return $user;
     }
 
-    public function getList(string $sex, string $city, string $longitude, string $dimension){
+    public function getList(string $page, string $number, string $sex, string $city, string $longitude, string $dimension, array $search = []){
+        unset($search['page'], $search['number']);
         $fields = ['user_id', 'phone', 'username', 'avatar', 'remark', 'sex'];
         $users = $this->userModel
+            ->where('sex', $sex)
+            ->where('city', $city)
+            ->where((new SearchService())->init($search))
             ->field($fields)
+            ->field(Location::distanceByMysqlM($longitude, $dimension, 'longitude', 'dimension', 'location'))
+            ->order('location', 'desc')
+            ->page($page, $number)
             ->select();
-        halt($users);
+        foreach ($users as &$user){
+            $user->avatar = explode('|', $user->avatar);
+            $user->location = $user->location > 1000 ? Location::mToKm(intval($user->location)).'千米' : $user->location.'米';
+        }
+        return $users;
     }
 
     public function hasPhone(string $phone) : bool {

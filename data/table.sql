@@ -14,6 +14,7 @@ CREATE TABLE `ea_user` (
     `height` int(3) DEFAULT NULL COMMENT '身高 {text}',
     `city` varchar(255) DEFAULT NULL COMMENT '城市 {text}',
     `address` varchar(255) DEFAULT NULL COMMENT '居住地 {text}',
+    `income` int(1) DEFAULT NULL COMMENT '月收入 {radio} (1:3000元以内, 2:3000-5000元, 3:5000-10000元, 4:10000-30000元, 5:30000元以上)',
     `marriage` int(1) DEFAULT 1 COMMENT '婚姻状况 {radio} (1:未婚, 2:离异, 3:丧偶, 4:已婚)',
     `children` int(1) DEFAULT 0 COMMENT '子女状况 {radio} (0:没有, 1:有)',
 
