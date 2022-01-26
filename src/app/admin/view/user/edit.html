@@ -1,12 +1,6 @@
 <div class="layuimini-container">
     <form id="app-form" class="layui-form layuimini-form">
-        
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户UID</label>
-            <div class="layui-input-block">
-                <input type="text" name="user_id" class="layui-input" lay-verify="required" placeholder="请输入用户UID" value="{$row.user_id|default=''}">
-            </div>
-        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
@@ -36,18 +30,6 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">经度</label>
-            <div class="layui-input-block">
-                <input type="text" name="longitude" class="layui-input"  placeholder="请输入经度" value="{$row.longitude|default=''}">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">维度</label>
-            <div class="layui-input-block">
-                <input type="text" name="dimension" class="layui-input"  placeholder="请输入维度" value="{$row.dimension|default=''}">
-            </div>
-        </div>
-        <div class="layui-form-item">
             <label class="layui-form-label">学历</label>
             <div class="layui-input-block">
                 {foreach $getEduList as $k=>$v}
@@ -68,7 +50,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">生日</label>
             <div class="layui-input-block">
-                <input type="text" name="birthday" class="layui-input"  placeholder="请输入生日" value="{$row.birthday|default=''}">
+                <input type="text" name="birthday" data-date="" data-date-type="date" class="layui-input"  placeholder="请输入生日" value="{$row.birthday|default=''}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -78,13 +60,13 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">城市</label>
+            <label class="layui-form-label">工作城市</label>
             <div class="layui-input-block">
                 <input type="text" name="city" class="layui-input"  placeholder="请输入城市" value="{$row.city|default=''}">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">居住地</label>
+            <label class="layui-form-label">居住城市</label>
             <div class="layui-input-block">
                 <input type="text" name="address" class="layui-input"  placeholder="请输入居住地" value="{$row.address|default=''}">
             </div>
@@ -180,12 +162,6 @@
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">会员状态</label>
-            <div class="layui-input-block">
-                <input type="text" name="status" class="layui-input" lay-verify="required" placeholder="请输入会员状态" value="{$row.status|default=''}">
-            </div>
-        </div>
         <div class="hr-line"></div>
         <div class="layui-form-item text-center">
             <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>

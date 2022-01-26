@@ -10,7 +10,7 @@ CREATE TABLE `ea_user` (
     `dimension` varchar(255) DEFAULT NULL COMMENT '维度 {text}',
     `edu` int(1) DEFAULT NULL COMMENT '学历 {radio} (1:初中, 2:中专, 3:高中, 4:大专, 5:本科, 6:硕士, 7:博士, 8:博士后)',
     `sex` int(1) DEFAULT 0 COMMENT '性别 {radio} (0:未知, 1:男, 2:女)',
-    `birthday` date DEFAULT NULL COMMENT '生日 {text}',
+    `birthday` date DEFAULT NULL COMMENT '生日  {date}(datetime)',
     `height` int(3) DEFAULT NULL COMMENT '身高 {text}',
     `city` varchar(255) DEFAULT NULL COMMENT '城市 {text}',
     `address` varchar(255) DEFAULT NULL COMMENT '居住地 {text}',

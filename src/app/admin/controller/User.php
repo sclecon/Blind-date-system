@@ -13,6 +13,8 @@ use think\App;
 class User extends AdminController
 {
 
+    protected $pk = 'user_id';
+
     use \app\admin\traits\Curd;
 
     public function __construct(App $app)
