@@ -151,14 +151,22 @@ class UserService
         if (is_null($user)){
             throw new HandleException('get user detail fail, user non-existent', 404);
         }
-        unset($user['status'], $user['update_time'], $user['delete_time']);
+        unset($user['status'], $user['update_time'], $user['delete_time'], $user['longitude'], $user['dimension']);
         $user['avatar'] = explode('|', $user['avatar']);
+        $user['edu'] = is_null($user['edu']) === false ? $this->userModel->getEduList()[$user['edu']] : '暂未选择';
+        $user['sex'] = is_null($user['sex']) === false ? $this->userModel->getSexList()[$user['sex']] : '暂未选择';
+        $user['income'] = is_null($user['income']) === false ? $this->userModel->getIncomeList()[$user['income']] : '暂未选择';
+        $user['marriage'] = is_null($user['marriage']) === false ? $this->userModel->getMarriageList()[$user['marriage']] : '暂未选择';
+        $user['children'] = is_null($user['children']) === false ? $this->userModel->getChildrenList()[$user['children']] : '暂未选择';
+        $user['blood'] = is_null($user['blood']) === false ? $this->userModel->getBloodList()[$user['blood']] : '暂未选择';
+        $user['house'] = is_null($user['house']) === false ? $this->userModel->getHouseList()[$user['house']] : '暂未选择';
+        $user['car_buy'] = is_null($user['car_buy']) === false ? $this->userModel->getCarBuyList()[$user['car_buy']] : '暂未选择';
         return $user;
     }
 
     public function getList(string $page, string $number, string $sex, string $city, string $longitude, string $dimension, array $search = []){
         unset($search['page'], $search['number']);
-        $fields = ['user_id', 'phone', 'username', 'avatar', 'remark', 'sex'];
+        $fields = ['user_id', 'username', 'avatar', 'remark', 'sex'];
         $users = $this->userModel
             ->where('sex', $sex)
             ->where('city', $city)
@@ -171,6 +179,7 @@ class UserService
         foreach ($users as &$user){
             $user->avatar = explode('|', $user->avatar);
             $user->location = $user->location > 1000 ? Location::mToKm(intval($user->location)).'千米' : $user->location.'米';
+            $user->sex = is_null($user->sex) === false ? $this->userModel->getSexList()[$user->sex] : '暂未选择';
         }
         return $users;
     }
