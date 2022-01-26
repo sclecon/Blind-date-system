@@ -43,7 +43,7 @@ class CsrfMiddleware
 
                 $check = $request->checkToken('__token__', $data);
                 if (!$check) {
-                    $this->error('请求验证失败，请重新刷新页面！');
+                    // $this->error('请求验证失败，请重新刷新页面！');
                 }
 
             }

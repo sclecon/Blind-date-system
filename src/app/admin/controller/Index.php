@@ -37,6 +37,14 @@ class Index extends AdminController
             ->limit(8)
             ->select();
         $this->assign('quicks', $quicks);
+
+        $total = round(\app\admin\model\UserPay::where('flag', 1)->field('sum(total) as total')->find()->total, 2);
+        $total = $total ?: '0.00';
+        $this->assign('user', \app\admin\model\User::count());
+        $this->assign('total', $total);
+        $this->assign('event', \app\admin\model\Event::count());
+        $this->assign('feed', \app\admin\model\Feedback::count());
+
         return $this->fetch();
     }
 
