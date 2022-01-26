@@ -13,7 +13,11 @@ class User extends TimeModel
 
     protected $deleteTime = "delete_time";
 
-    
+
+
+    public function getIncomeList(){
+        return ['1'=>'3000元以内', '2'=>'3000-5000元', '3'=>'5000-10000元', '4'=>'10000-30000元', '5'=>'30000元以上'];
+    }
     
     public function getEduList()
     {

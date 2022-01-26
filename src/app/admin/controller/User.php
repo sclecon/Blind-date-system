@@ -35,6 +35,8 @@ class User extends AdminController
 
         $this->assign('getCarBuyList', $this->model->getCarBuyList());
 
+        $this->assign('getIncomeList', $this->model->getIncomeList());
+
     }
 
     

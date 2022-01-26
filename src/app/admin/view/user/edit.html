@@ -89,6 +89,16 @@
                 <input type="text" name="address" class="layui-input"  placeholder="请输入居住地" value="{$row.address|default=''}">
             </div>
         </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+                {foreach $getIncomeList as $k=>$v}
+                <input type="radio" name="income" value="{$k}" title="{$v}" {in name="k" value="$row.income"}checked=""{/in}>
+                {/foreach}
+            </div>
+        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">婚姻状况</label>
             <div class="layui-input-block">
