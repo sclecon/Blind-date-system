@@ -63,6 +63,7 @@ class EventService
             ->select()->toArray();
          foreach ($response as &$resource){
              unset($resource['user'], $resource['event']);
+             $resource['join_time'] = date('Y-m-d H:i:s', $resource['join_time']);
          }
          return $response;
     }
