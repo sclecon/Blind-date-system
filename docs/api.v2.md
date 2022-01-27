@@ -431,7 +431,7 @@
 
 ### 获取支付状态
 #### Address
-    /order/create
+    /order/status
 #### Header
     {
         authentication:zdGwfluKRoPHDVoAtUuXz3se7k89br7b4D3BCod/RBKdWJRzC65dH9ZH9fbZk6MuUkZYGLbFBdU0UQ5VmkPO6Q==    // 用户Token
