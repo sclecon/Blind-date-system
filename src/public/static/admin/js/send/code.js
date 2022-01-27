@@ -9,6 +9,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         delete_url: 'send.code/delete',
         export_url: 'send.code/export',
         modify_url: 'send.code/modify',
+        pk: 'send_id',
     };
 
     var Controller = {
@@ -16,8 +17,14 @@ define(["jquery", "easy-admin"], function ($, ea) {
         index: function () {
             ea.table.render({
                 init: init,
+                toolbar: ['refresh', 'export'],
                 cols: [[
-                    {type: 'checkbox'},                    {field: 'send_id', title: '数据ID'},                    {field: 'phone', title: '手机号'},                    {field: 'code', title: '验证码'},                    {field: 'status', search: 'select', selectList: {"1":"验证完成","0":"等待验证"}, title: '数据状态', templet: ea.table.switch},                    {field: 'create_time', title: '创建时间'},                    {width: 250, title: '操作', templet: ea.table.tool},
+                    {type: 'checkbox'},
+                    {field: 'send_id', title: '短信ID'},
+                    {field: 'phone', title: '手机号'},
+                    {field: 'code', title: '验证码'},
+                    {field: 'status', search: 'select', selectList: {"1":"验证完成","0":"等待验证"}, title: '验证状态'},
+                    {field: 'create_time', title: '发送时间'},
                 ]],
             });
 
