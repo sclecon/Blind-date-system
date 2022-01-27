@@ -14,6 +14,8 @@ use think\App;
 class Pay extends AdminController
 {
 
+    protected $pk = 'pay_id';
+
     use \app\admin\traits\Curd;
 
     public function __construct(App $app)
@@ -32,15 +34,6 @@ class Pay extends AdminController
      */
     public function index()
     {
-        list($page, $limit, $where) = $this->buildTableParames();
-        $list = $this->model
-            ->withJoin('user', 'LEFT')
-            ->withJoin('buyUser', 'LEFT')
-            ->where($where)
-            ->page($page, $limit)
-            ->order($this->sort)
-            ->select();
-        halt($list[0]->toArray());
         if ($this->request->isAjax()) {
             if (input('selectFields')) {
                 return $this->selectList();
@@ -48,12 +41,10 @@ class Pay extends AdminController
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model
                 ->withJoin('user', 'LEFT')
-                ->withJoin('buyUser', 'LEFT')
                 ->where($where)
                 ->count();
             $list = $this->model
                 ->withJoin('user', 'LEFT')
-                ->withJoin('buyUser', 'LEFT')
                 ->where($where)
                 ->page($page, $limit)
                 ->order($this->sort)

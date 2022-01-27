@@ -1,42 +1,35 @@
 <div class="layuimini-container">
     <form id="app-form" class="layui-form layuimini-form">
         
-        <div class="layui-form-item">
-            <label class="layui-form-label">数据ID</label>
-            <div class="layui-input-block">
-                <input type="text" name="pay_id" class="layui-input" lay-verify="required" placeholder="请输入数据ID" value="{$row.pay_id|default=''}">
-            </div>
-        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">订单ID</label>
             <div class="layui-input-block">
-                <input type="text" name="order_id" class="layui-input" lay-verify="required" placeholder="请输入订单ID" value="{$row.order_id|default=''}">
+                <input type="text" name="order_id" class="layui-input" lay-verify="required" placeholder="请输入订单ID" value="{$row.order_id|default=''}" disabled>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">下单会员ID</label>
             <div class="layui-input-block">
-                <select name="user_id" lay-verify="required">
-
-                </select>
+                <input type="text" name="user_id" class="layui-input" lay-verify="required" placeholder="请输入购买会员ID" value="{$row.user_id|default=''}" disabled>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">购买会员ID</label>
+            <label class="layui-form-label">目标会员ID</label>
             <div class="layui-input-block">
-                <input type="text" name="buy_user_id" class="layui-input" lay-verify="required" placeholder="请输入购买会员ID" value="{$row.buy_user_id|default=''}">
+                <input type="text" name="buy_user_id" class="layui-input" lay-verify="required" placeholder="请输入购买会员ID" value="{$row.buy_user_id|default=''}" disabled>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">订单标题</label>
             <div class="layui-input-block">
-                <input type="text" name="subject" class="layui-input" lay-verify="required" placeholder="请输入订单标题" value="{$row.subject|default=''}">
+                <input type="text" name="subject" class="layui-input" lay-verify="required" placeholder="请输入订单标题" value="{$row.subject|default=''}" disabled>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">支付金额</label>
             <div class="layui-input-block">
-                <input type="text" name="total" class="layui-input" lay-verify="required" placeholder="请输入支付金额" value="{$row.total|default=''}">
+                <input type="text" name="total" class="layui-input" lay-verify="required" placeholder="请输入支付金额" value="{$row.total|default=''}" disabled>
             </div>
         </div>
         <div class="layui-form-item">
@@ -45,13 +38,6 @@
                 {foreach $getFlagList as $k=>$v}
                 <input type="radio" name="flag" value="{$k}" title="{$v}" {in name="k" value="$row.flag"}checked=""{/in}>
                 {/foreach}
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">数据状态</label>
-            <div class="layui-input-block">
-                <input type="text" name="status" class="layui-input" lay-verify="required" placeholder="请输入数据状态" value="{$row.status|default=''}">
             </div>
         </div>
         <div class="hr-line"></div>

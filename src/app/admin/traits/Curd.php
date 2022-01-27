@@ -102,7 +102,7 @@ trait Curd
     public function delete($id)
     {
         $this->checkPostRequest();
-        $row = $this->model->whereIn($this->pk ?: 'id', $id)->select();
+        $row = $this->model->whereIn(isset($this->pk) ? $this->pk : 'id', $id)->select();
         $row->isEmpty() && $this->error('数据不存在');
         try {
             $save = $row->delete();
