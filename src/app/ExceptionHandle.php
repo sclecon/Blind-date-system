@@ -76,7 +76,7 @@ class ExceptionHandle extends Handle
                 $msg = str_replace("\\", ">", $e->getMessage());
                 $msg = str_replace('>app>', '', $msg);
                 if (strlen($msg)){
-                    return Json::error($msg, $e->getCode()?:500);
+                    // return Json::error($msg, $e->getCode()?:500);
                 }
             }
         }

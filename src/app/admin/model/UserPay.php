@@ -19,6 +19,12 @@ class UserPay extends TimeModel
         return $this->belongsTo('\app\admin\model\User', 'user_id', 'user_id');
     }
 
+
+    public function buyUser()
+    {
+        return $this->belongsTo('\app\admin\model\BuyUser', 'buy_user_id', 'user_id');
+    }
+
     
     public function getFlagList()
     {
