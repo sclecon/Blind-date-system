@@ -12,6 +12,7 @@ use think\App;
  */
 class Event extends AdminController
 {
+    protected $pk = 'event_id';
 
     use \app\admin\traits\Curd;
 

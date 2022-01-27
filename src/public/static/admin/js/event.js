@@ -9,6 +9,8 @@ define(["jquery", "easy-admin"], function ($, ea) {
         delete_url: 'event/delete',
         export_url: 'event/export',
         modify_url: 'event/modify',
+        pk: 'event_id',
+        join_url: 'event.join/index'
     };
 
     var Controller = {
@@ -18,15 +20,28 @@ define(["jquery", "easy-admin"], function ($, ea) {
                 init: init,
                 cols: [[
                     {type: 'checkbox'},
-                    {field: 'event_id', title: '活动ID'},
-                    {field: 'subject', title: '活动标题'},
-                    {field: 'remark', title: '活动简介', templet: ea.table.text},
+                    {field: 'event_id', title: 'ID'},
+                    {field: 'subject', title: '标题'},
+                    {field: 'remark', title: '简介'},
                     {field: 'image', title: '封面图', templet: ea.table.image},
-                    {field: 'start_time', title: '活动开始时间'},
-                    {field: 'over_time', title: '活动结束时间'},
+                    {field: 'start_time', title: '开始时间'},
+                    {field: 'over_time', title: '结束时间'},
                     {field: 'flag', search: 'select', selectList: {"1":"未开始","2":"进行中","3":"已结束"}, title: '活动状态'},
                     {field: 'create_time', title: '创建时间'},
-                    {width: 250, title: '操作', templet: ea.table.tool},
+                    {width: 250, title: '操作', templet: ea.table.tool, operat: [
+                            [{
+                                class: 'layui-btn layui-btn-xs layui-btn-success',
+                                method: 'open',
+                                text: '参与记录',
+                                auth: 'edit',
+                                url: init.join_url,
+                                extend: 'data-full="true"',
+                                field: 'event_id',
+                            }],
+                            'edit',
+                            'delete'
+                        ]
+                    },
                 ]],
             });
 

@@ -9,6 +9,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         delete_url: 'event.join/delete',
         export_url: 'event.join/export',
         modify_url: 'event.join/modify',
+        pk: 'join_id'
     };
 
     var Controller = {
@@ -16,8 +17,17 @@ define(["jquery", "easy-admin"], function ($, ea) {
         index: function () {
             ea.table.render({
                 init: init,
+                toolbar: ['delete', 'export'],
                 cols: [[
-                    {type: 'checkbox'},                    {field: 'join_id', title: '数据ID'},                    {field: 'event_id', title: '活动ID'},                    {field: 'user_id', title: '用户UID'},                    {field: 'status', title: '数据状态', templet: ea.table.switch},                    {field: 'create_time', title: '创建时间'},                    {field: 'event.event_id', title: '活动ID'},                    {field: 'event.subject', title: '活动标题'},                    {field: 'event.image', title: '封面图', templet: ea.table.image},                    {field: 'event.flag', title: '活动状态'},                    {field: 'event.status', title: '数据状态', templet: ea.table.switch},                    {field: 'event.create_time', title: '创建时间'},                    {width: 250, title: '操作', templet: ea.table.tool},
+                    {type: 'checkbox'},
+                    {field: 'join_id', title: '记录ID'},
+                    {field: 'event_id', title: '活动ID'},
+                    {field: 'user_id', title: '用户UID'},
+                    {field: 'username', title: '用户名'},
+                    {field: 'phone', title: '手机号'},
+                    // {field: 'status', title: '数据状态', templet: ea.table.switch},
+                    {field: 'create_time', title: '报名时间'},
+                    {width: 250, title: '操作', templet: ea.table.tool, operat: ['delete']},
                 ]],
             });
 
