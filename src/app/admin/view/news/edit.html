@@ -1,12 +1,6 @@
 <div class="layuimini-container">
     <form id="app-form" class="layui-form layuimini-form">
-        
-        <div class="layui-form-item">
-            <label class="layui-form-label">新闻ID</label>
-            <div class="layui-input-block">
-                <input type="text" name="news_id" class="layui-input" lay-verify="required" placeholder="请输入新闻ID" value="{$row.news_id|default=''}">
-            </div>
-        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">新闻标题</label>
             <div class="layui-input-block">
@@ -17,12 +11,6 @@
             <label class="layui-form-label">新闻内容</label>
             <div class="layui-input-block">
                 <textarea name="message" rows="20" class="layui-textarea editor" 新闻内容 placeholder="请输入新闻内容">{$row.message|raw|default=''}</textarea>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">新闻状态</label>
-            <div class="layui-input-block">
-                <input type="text" name="status" class="layui-input" lay-verify="required" placeholder="请输入新闻状态" value="{$row.status|default=''}">
             </div>
         </div>
         <div class="hr-line"></div>

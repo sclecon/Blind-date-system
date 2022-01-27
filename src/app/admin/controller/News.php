@@ -13,6 +13,8 @@ use think\App;
 class News extends AdminController
 {
 
+    protected $pk = 'news_id';
+
     use \app\admin\traits\Curd;
 
     public function __construct(App $app)

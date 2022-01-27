@@ -9,6 +9,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         delete_url: 'news/delete',
         export_url: 'news/export',
         modify_url: 'news/modify',
+        pk: 'news_id'
     };
 
     var Controller = {
@@ -17,7 +18,11 @@ define(["jquery", "easy-admin"], function ($, ea) {
             ea.table.render({
                 init: init,
                 cols: [[
-                    {type: 'checkbox'},                    {field: 'news_id', title: '新闻ID'},                    {field: 'subject', title: '新闻标题'},                    {field: 'status', title: '新闻状态', templet: ea.table.switch},                    {field: 'create_time', title: '创建时间'},                    {width: 250, title: '操作', templet: ea.table.tool},
+                    {type: 'checkbox'},
+                    {field: 'news_id', title: '新闻广告ID'},
+                    {field: 'subject', title: '新闻广告标题'},
+                    {field: 'create_time', title: '发布时间'},
+                    {width: 250, title: '操作', templet: ea.table.tool},
                 ]],
             });
 
