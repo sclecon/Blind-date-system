@@ -16,8 +16,16 @@ define(["jquery", "easy-admin"], function ($, ea) {
         index: function () {
             ea.table.render({
                 init: init,
+                toolbar: ['refresh', 'export'],
                 cols: [[
-                    {type: 'checkbox'},                    {field: 'feedback_id', title: '数据ID'},                    {field: 'user_id', title: '用户ID'},                    {field: 'phone', title: '手机号'},                    {field: 'message', title: '反馈内容'},                    {field: 'status', title: '数据状态', templet: ea.table.switch},                    {field: 'create_time', title: '创建时间'},                    {width: 250, title: '操作', templet: ea.table.tool},
+                    {type: 'checkbox'},
+                    {field: 'feedback_id', title: '数据ID'},
+                    {field: 'user_id', title: '用户ID'},
+                    {field: 'phone', title: '手机号'},
+                    {field: 'message', title: '反馈内容'},
+                    // {field: 'status', title: '数据状态', templet: ea.table.switch},
+                    {field: 'create_time', title: '反馈时间'},
+                    // {width: 250, title: '操作', templet: ea.table.tool},
                 ]],
             });
 
