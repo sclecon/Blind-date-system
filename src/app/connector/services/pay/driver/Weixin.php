@@ -149,6 +149,5 @@ class Weixin implements PayPort
 
     protected function getOpenId(){
         return $this->openid;
-        // return 'ovuZIwgm0P38tOUj8jdmfJwlvCug';
     }
 }

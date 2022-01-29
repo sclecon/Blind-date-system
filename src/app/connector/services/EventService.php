@@ -68,6 +68,13 @@ class EventService
          return $response;
     }
 
+    public function checkFlagAndUpdate(string $field, int $flag) : bool {
+        return $this->getModel()
+            ->where('flag', '<', $flag)
+            ->where($field, '<', date('Y-m-d H:i:s', time()))
+            ->save(['flag'=>$flag]);
+    }
+
     protected function hasJoinStatus(string $event_id, string $user_id) : bool {
         return $this->getJoinModel()
             ->where('event_id', $event_id)
