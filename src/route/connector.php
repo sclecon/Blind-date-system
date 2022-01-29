@@ -44,3 +44,5 @@ Route::group('order', function (){
     Route::post('status', '\app\connector\controller\Order::status');
     Route::post('query', '\app\connector\controller\Order::query');
 })->middleware(AuthMiddleware::class);
+
+Route::rule('order/notify', '\app\connector\controller\Order::notify');

@@ -17,6 +17,7 @@ use EasyWeChat\Payment\Application;
 use app\connector\services\pay\driver\exception\WeixinException;
 use app\connector\services\pay\driver\port\PayPort;
 use app\connector\services\pay\driver\traits\BaseDriver;
+use think\facade\Request;
 
 class Weixin implements PayPort
 {
@@ -83,10 +84,10 @@ class Weixin implements PayPort
         return $data;
     }
 
-    public function notify(\Closure $closure) : bool {
-        $response = $this->getAppClient()->handlePaidNotify(function ($params, $fail) use ($closure) {
+    public function notify(\Closure $handle) : bool {
+        $response = $this->getAppClient()->handlePaidNotify(function ($params, $fail) use ($handle) {
             if (isset($params['return_code']) && $params['return_code'] === 'SUCCESS' && isset($params['result_code']) && $params['result_code'] === 'SUCCESS') {
-                $closure($params['out_trade_no']);
+                $handle($params['out_trade_no']);
                 return true;
             }
             return $fail('please notify me later');
@@ -134,7 +135,7 @@ class Weixin implements PayPort
     }
 
     protected function getNotifyUrl(){
-        return url('connector/order/notify', [], true, true)->build();
+        return Request::domain().'/order/notify';
     }
 
     protected function getAppClient() : Application {

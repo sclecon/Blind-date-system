@@ -48,6 +48,22 @@ class OrderService
         return is_null($order) ? 0 : $order->flag;
     }
 
+    public function findOrderByOrderID(string $order_id){
+        return $order = $this->getModel()
+            ->where('order_id', $order_id)
+            ->find();
+    }
+
+    public function success(string $order_id) : bool {
+        return $this->getModel()
+            ->where('order_id', $order_id)
+            ->save(['flag'=>1]);
+    }
+
+    public function notify(\Closure $handle){
+        (new PaymentService())->notify('weixin', $handle);
+    }
+
     protected function createOrderId(){
         return time().rand(100000, 999999);
     }
