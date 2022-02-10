@@ -153,14 +153,14 @@ class UserService
         }
         unset($user['status'], $user['update_time'], $user['delete_time'], $user['longitude'], $user['dimension']);
         $user['avatar'] = explode('|', $user['avatar']);
-        $user['edu'] = is_null($user['edu']) === false ? $this->userModel->getEduList()[$user['edu']] : '暂未选择';
-        $user['sex'] = is_null($user['sex']) === false ? $this->userModel->getSexList()[$user['sex']] : '暂未选择';
-        $user['income'] = is_null($user['income']) === false ? $this->userModel->getIncomeList()[$user['income']] : '暂未选择';
-        $user['marriage'] = is_null($user['marriage']) === false ? $this->userModel->getMarriageList()[$user['marriage']] : '暂未选择';
-        $user['children'] = is_null($user['children']) === false ? $this->userModel->getChildrenList()[$user['children']] : '暂未选择';
-        $user['blood'] = is_null($user['blood']) === false ? $this->userModel->getBloodList()[$user['blood']] : '暂未选择';
-        $user['house'] = is_null($user['house']) === false ? $this->userModel->getHouseList()[$user['house']] : '暂未选择';
-        $user['car_buy'] = is_null($user['car_buy']) === false ? $this->userModel->getCarBuyList()[$user['car_buy']] : '暂未选择';
+        $user['edu_str'] = is_null($user['edu']) === false ? $this->userModel->getEduList()[$user['edu']] : '暂未选择';
+        $user['sex_str'] = is_null($user['sex']) === false ? $this->userModel->getSexList()[$user['sex']] : '暂未选择';
+        $user['income_str'] = is_null($user['income']) === false ? $this->userModel->getIncomeList()[$user['income']] : '暂未选择';
+        $user['marriage_str'] = is_null($user['marriage']) === false ? $this->userModel->getMarriageList()[$user['marriage']] : '暂未选择';
+        $user['children_str'] = is_null($user['children']) === false ? $this->userModel->getChildrenList()[$user['children']] : '暂未选择';
+        $user['blood_str'] = is_null($user['blood']) === false ? $this->userModel->getBloodList()[$user['blood']] : '暂未选择';
+        $user['house_str'] = is_null($user['house']) === false ? $this->userModel->getHouseList()[$user['house']] : '暂未选择';
+        $user['car_buy_str'] = is_null($user['car_buy']) === false ? $this->userModel->getCarBuyList()[$user['car_buy']] : '暂未选择';
         return $user;
     }
 
