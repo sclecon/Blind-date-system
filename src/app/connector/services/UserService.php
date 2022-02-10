@@ -161,12 +161,13 @@ class UserService
         $user['blood_str'] = is_null($user['blood']) === false ? $this->userModel->getBloodList()[$user['blood']] : '暂未选择';
         $user['house_str'] = is_null($user['house']) === false ? $this->userModel->getHouseList()[$user['house']] : '暂未选择';
         $user['car_buy_str'] = is_null($user['car_buy']) === false ? $this->userModel->getCarBuyList()[$user['car_buy']] : '暂未选择';
+        $user['age'] = $this->getAgeByBirthday($user['birthday']);
         return $user;
     }
 
     public function getList(string $page, string $number, string $sex, string $city, string $longitude, string $dimension, array $search = []){
         unset($search['page'], $search['number']);
-        $fields = ['user_id', 'username', 'avatar', 'remark', 'sex'];
+        $fields = ['user_id', 'username', 'avatar', 'remark', 'sex', 'height', 'birthday'];
         $users = $this->userModel
             ->where('sex', $sex)
             ->where('city', $city)
@@ -180,6 +181,7 @@ class UserService
             $user->avatar = explode('|', $user->avatar);
             $user->location = $user->location > 1000 ? Location::mToKm(intval($user->location)).'千米' : $user->location.'米';
             $user->sex = is_null($user->sex) === false ? $this->userModel->getSexList()[$user->sex] : '暂未选择';
+            $user->age = $this->getAgeByBirthday($user->birthday);
         }
         return $users;
     }
@@ -216,5 +218,13 @@ class UserService
             throw new HandleException('用户登录信息已过期，请重新登录', 504);
         }
         return Config::set(['id'=>$user['user_id'], 'phone'=>$user['phone']], 'user');
+    }
+
+
+    private function getAgeByBirthday($birthday){
+        if (is_string($birthday)){
+            return date('Y', time()) - date('Y', strtotime($birthday));
+        }
+        return '暂未设置';
     }
 }
