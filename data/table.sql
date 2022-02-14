@@ -123,3 +123,21 @@ CREATE TABLE `ea_send_code` (
     PRIMARY KEY (`send_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='短信发送记录表';
 -- php think curd -t send_code
+
+-- user_condition table
+CREATE TABLE `ea_user_condition` (
+    `condition_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '数据ID',
+    `user_id` varchar(32) NOT NULL COMMENT '用户ID',
+    `age` varchar(32) DEFAULT NULL COMMENT '年龄 {text}',
+    `height` varchar(32) DEFAULT NULL COMMENT '身高 {text}',
+    `edu` int(1) DEFAULT NULL COMMENT '学历 {radio} (1:初中, 2:中专, 3:高中, 4:大专, 5:本科, 6:硕士, 7:博士, 8:博士后)',
+    `marriage` int(1) DEFAULT 1 COMMENT '婚姻状况 {radio} (1:未婚, 2:离异, 3:丧偶, 4:已婚)',
+    `address` varchar(255) DEFAULT NULL COMMENT '居住地 {text}',
+    `house` int(1) DEFAULT NULL COMMENT '购房情况 {radio} (1:已购房无贷款, 2:已购房有贷款, 3:与父母同住, 4:暂未购房, 5:租房)',
+    `status` int(1) NOT NULL DEFAULT 0 COMMENT '数据状态 {radio} (1:正常, 0:已删除)',
+    `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
+    `update_time` int(11) DEFAULT NULL COMMENT '更新时间',
+    `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`condition_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户交友条件表';
+-- php think curd -t user_condition
