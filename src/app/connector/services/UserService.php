@@ -200,7 +200,7 @@ class UserService
         $addressField = ['city', 'address', 'native'];
         foreach ($addressField as $item){
             if (isset($data[$item])){
-                $json = htmlspecialchars_decode($data[$item]);
+                $json = htmlspecialchars_decode(is_string($data[$item]) ? $data[$item] : '');
                 $json = json_decode($json, true) ?: false;
                 if ($json === false){
                     throw new HandleException("'{$item}'格式错误");

@@ -39,7 +39,7 @@ class EventService
     }
 
     public function joinList(string $event_id){
-        return $this->getJoinModel()
+        $joinlist = $this->getJoinModel()
             ->field('join_id')
             ->field('user_id')
             ->field('join_id')
@@ -49,6 +49,10 @@ class EventService
             ],'LEFT')
             ->where('event_id', $event_id)
             ->select()->toArray();
+        foreach ($joinlist as &$item){
+            $item['avatar'] = explode('|', $item['avatar']);
+        }
+        return $joinlist;
     }
 
     public function joinEvent(string $event_id, string $user_id) : int {
