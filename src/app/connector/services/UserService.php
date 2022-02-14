@@ -164,6 +164,7 @@ class UserService
         $user['age'] = $this->getAgeByBirthday($user['birthday']);
         $user['city'] = json_decode(htmlspecialchars_decode($user['city']), true) ?: false;
         $user['address'] = json_decode(htmlspecialchars_decode($user['address']), true) ?: false;
+        $user['native'] = json_decode(htmlspecialchars_decode($user['native']), true) ?: false;
         return $user;
     }
 
@@ -196,7 +197,7 @@ class UserService
     }
 
     public function update(string $user_id, string $phone, array $data) : bool {
-        $addressField = ['city', 'address'];
+        $addressField = ['city', 'address', 'native'];
         foreach ($addressField as $item){
             if (isset($data[$item])){
                 $json = htmlspecialchars_decode($data[$item]);
