@@ -29,17 +29,29 @@
                 <textarea name="message" rows="20" class="layui-textarea editor" 活动详情 placeholder="请输入活动详情"></textarea>
             </div>
         </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">活动价格</label>
+            <div class="layui-input-block">
+                <input type="text" name="total_fee" class="layui-input" lay-verify="required" placeholder="请输入活动价格 不填写或者0则免费" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">活动地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="address" class="layui-input" lay-verify="required" placeholder="请输入活动举行地址 不输入则表示线上活动" value="">
+            </div>
+        </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">活动开始时间</label>
             <div class="layui-input-block">
-                <input type="text" name="start_time" data-date="" data-date-type="date" class="layui-input"  placeholder="请输入活动开始时间" value="">
+                <input type="text" name="start_time" data-date="" data-date-type="datetime" class="layui-input"  placeholder="请输入活动开始时间" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">活动结束时间</label>
             <div class="layui-input-block">
-                <input type="text" name="over_time" data-date="" data-date-type="date" class="layui-input"  placeholder="请输入活动结束时间" value="">
+                <input type="text" name="over_time" data-date="" data-date-type="datetime" class="layui-input"  placeholder="请输入活动结束时间" value="">
             </div>
         </div>
 

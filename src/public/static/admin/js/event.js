@@ -24,6 +24,8 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     {field: 'subject', title: '标题'},
                     {field: 'remark', title: '简介'},
                     {field: 'image', title: '封面图', templet: ea.table.image},
+                    {field: 'total_fee', title: '价格'},
+                    {field: 'address', title: '地址'},
                     {field: 'start_time', title: '开始时间'},
                     {field: 'over_time', title: '结束时间'},
                     {field: 'flag', search: 'select', selectList: {"1":"未开始","2":"进行中","3":"已结束"}, title: '活动状态'},

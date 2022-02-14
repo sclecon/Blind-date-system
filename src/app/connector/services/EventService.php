@@ -20,14 +20,14 @@ class EventService
         }
         return $response
             ->page($page, $number)
-            ->field('event_id, image, subject, remark, start_time, over_time, flag')
+            ->field('event_id, image, subject, remark, start_time, over_time, flag, total_fee, address')
             ->select();
     }
 
     public function detail(string $event_id){
         $response = $this->getModel()
             ->where('event_id', $event_id)
-            ->field('event_id, image, subject, remark, message, start_time, over_time, flag')
+            ->field('event_id, image, subject, remark, message, start_time, over_time, flag, total_fee, address')
             ->find();
         if (is_null($response)){
             throw new HandleException('活动不存在');
