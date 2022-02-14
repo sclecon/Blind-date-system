@@ -204,8 +204,8 @@ class UserService
                 $json = json_decode($json, true) ?: false;
                 if ($json === false){
                     throw new HandleException("'{$item}'格式错误");
-                } else if (empty($json['key']) || empty($json['name'])){
-                    throw new HandleException("'{$item}'缺少key或name");
+                } else if (empty($json['name'])){
+                    throw new HandleException("'{$item}'缺少name");
                 }
             }
         }
