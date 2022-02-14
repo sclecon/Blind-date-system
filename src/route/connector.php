@@ -16,6 +16,10 @@ Route::group('user', function(){
    Route::post('upgrade/profile', '\app\connector\controller\User::profile')->middleware(AuthMiddleware::class);
    Route::post('detail', '\app\connector\controller\User::detail');
    Route::post('list', '\app\connector\controller\User::list')->middleware(AuthMiddleware::class);
+   Route::group('condition', function (){
+       Route::post('set', '\app\connector\controller\userCondition::set')->middleware(AuthMiddleware::class);
+       Route::post('get', '\app\connector\controller\userCondition::get');
+   });
 });
 
 Route::group('utils', function (){
