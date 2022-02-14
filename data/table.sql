@@ -56,6 +56,8 @@ CREATE TABLE `ea_event` (
     `remark` varchar(255) DEFAULT NULL COMMENT '活动简介 {textarea}',
     `image` varchar(255) NOT NULL COMMENT '封面图 {image}',
     `message` text NOT NULL COMMENT '活动详情 {editor}',
+    `total_fee` float(10,2) DEFAULT NULL COMMENT '活动参与价格 {text}',
+    `address` varchar(255) DEFAULT NULL COMMENT '活动地址 {text}',
     `flag` int(1) NOT NULL DEFAULT 1 COMMENT '活动状态 {radio} (1:等待开始, 2:进行中, 3:已结束)',
     `start_time` datetime DEFAULT NULL COMMENT '活动开始时间 {date}(date)',
     `over_time` datetime DEFAULT NULL COMMENT '活动结束时间 {date}(date)',
@@ -66,6 +68,8 @@ CREATE TABLE `ea_event` (
     PRIMARY KEY (`event_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='活动数据表';
 -- php think curd -t event -f 1
+-- ALTER TABLE `ea_event` ADD `total_fee` FLOAT(10,2) NULL DEFAULT NULL COMMENT '活动参与价格 {text}' AFTER `message`;
+-- ALTER TABLE `ea_event` ADD `address` VARCHAR(255) NULL DEFAULT NULL COMMENT '活动地址 {text}' AFTER `total_fee`;
 
 -- event_join table
 CREATE TABLE `ea_event_join` (

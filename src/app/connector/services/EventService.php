@@ -32,7 +32,23 @@ class EventService
         if (is_null($response)){
             throw new HandleException('活动不存在');
         }
+        $response->message = htmlspecialchars_decode($response->message);
+        $joinList = $this->joinList($event_id);
+        $response->list = $joinList ?: [];
         return $response;
+    }
+
+    public function joinList(string $event_id){
+        return $this->getJoinModel()
+            ->field('join_id')
+            ->field('user_id')
+            ->field('join_id')
+            ->field('event_id')
+            ->withJoin([
+                'user'=>['username'=>'username', 'avatar'=>'avatar']
+            ],'LEFT')
+            ->where('event_id', $event_id)
+            ->select()->toArray();
     }
 
     public function joinEvent(string $event_id, string $user_id) : int {
