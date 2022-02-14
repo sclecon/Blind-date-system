@@ -162,6 +162,8 @@ class UserService
         $user['house_str'] = is_null($user['house']) === false ? $this->userModel->getHouseList()[$user['house']] : '暂未选择';
         $user['car_buy_str'] = is_null($user['car_buy']) === false ? $this->userModel->getCarBuyList()[$user['car_buy']] : '暂未选择';
         $user['age'] = $this->getAgeByBirthday($user['birthday']);
+        $user['city'] = json_decode(htmlspecialchars_decode($user['city']), true) ?: false;
+        $user['address'] = json_decode(htmlspecialchars_decode($user['address']), true) ?: false;
         return $user;
     }
 
@@ -194,6 +196,18 @@ class UserService
     }
 
     public function update(string $user_id, string $phone, array $data) : bool {
+        $addressField = ['city', 'address'];
+        foreach ($addressField as $item){
+            if (isset($data[$item])){
+                $json = htmlspecialchars_decode($data[$item]);
+                $json = json_decode($json, true) ?: false;
+                if ($json === false){
+                    throw new HandleException("'{$item}'格式错误");
+                } else if (empty($json['key']) || empty($json['name'])){
+                    throw new HandleException("'{$item}'缺少key或name");
+                }
+            }
+        }
         return $this->userModel
             ->where('user_id', $user_id)
             ->where('phone', $phone)
