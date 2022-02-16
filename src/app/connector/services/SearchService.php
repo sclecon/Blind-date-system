@@ -18,7 +18,7 @@ class SearchService
         return function($query) use ($condition) {
             $this->query = $query;
             foreach ($condition as $action => $value){
-                if ($value !== false and in_array($action, $this->fields)){
+                if ($value !== false and in_array($action, $this->fields) and is_string($value) and strlen($value)){
                     $this->$action($value);
                 }
             }
