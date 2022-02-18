@@ -204,3 +204,6 @@ CREATE TABLE `ea_vip_pay` (
     PRIMARY KEY (`pay_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='VIP套餐订单表';
 -- php think curd -t vip_pay
+
+-- user table add VIP info
+ALTER TABLE `ea_user` ADD `vip` INT(1) NOT NULL DEFAULT '0' COMMENT 'VIP状态 {radio} (1:已开通, 0:未开通)' AFTER `car_buy`, ADD `numbers` INT(10) NOT NULL DEFAULT '0' COMMENT 'VIP次数 {text}' AFTER `vip`, ADD `expire` DATETIME NULL DEFAULT NULL COMMENT 'VIP过期时间 {datetime}' AFTER `numbers`;
