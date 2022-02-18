@@ -166,3 +166,6 @@ CREATE TABLE `ea_banner` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='系统Banner广告图';
 -- php think curd -t banner
 ALTER TABLE `ea_banner` ADD `weight` INT(10) NOT NULL DEFAULT '0' COMMENT '权重 {text}' AFTER `str`;
+
+-- user table add user score field
+ALTER TABLE `ea_user` ADD `score` INT(3) NOT NULL DEFAULT '50' COMMENT '用户评分 {text}' AFTER `phone`;

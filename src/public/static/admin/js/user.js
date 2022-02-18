@@ -26,6 +26,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     {field: 'user_id', title: '用户UID'},
                     {field: 'username', title: '用户名'},
                     {field: 'phone', title: '手机号'},
+                    {field: 'score', title: '用户评分'},
                     {field: 'remark', title: '个人介绍', templet: ea.table.text},
                     // {field: 'longitude', title: '经度', show: false},
                     // {field: 'dimension', title: '维度'},

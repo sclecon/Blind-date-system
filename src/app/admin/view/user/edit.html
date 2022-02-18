@@ -14,6 +14,12 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">用户评分</label>
+            <div class="layui-input-block">
+                <input type="text" name="score" class="layui-input" lay-verify="required" placeholder="请输入手机号" value="{$row.score|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label required">头像照片 最多五张</label>
             <div class="layui-input-block layuimini-upload">
                 <input name="avatar" class="layui-input layui-col-xs6"   placeholder="请上传头像照片 最多五张" value="{$row.avatar|default=''}">
