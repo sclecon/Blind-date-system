@@ -50,3 +50,8 @@ Route::group('order', function (){
 })->middleware(AuthMiddleware::class);
 
 Route::rule('order/notify', '\app\connector\controller\Order::notify');
+
+Route::group('banner', function (){
+    Route::post('home', '\app\connector\controller\Banner::home');
+    Route::post('event', '\app\connector\controller\Banner::event');
+});
