@@ -91,7 +91,7 @@ CREATE TABLE `ea_user_pay` (
     `user_id` bigint(20) unsigned NOT NULL COMMENT '下单会员ID',
     `buy_user_id` bigint(20) unsigned NOT NULL COMMENT '购买会员ID',
     `subject` varchar(255) NOT NULL COMMENT '订单标题 {text}',
-    `total` float(11,2) NOT NULL COMMENT '支付金额 {text}',
+    `total` float(10,2) NOT NULL COMMENT '支付金额 {text}',
     `flag` int(1) NOT NULL DEFAULT 0 COMMENT '支付状态 {radio} (1:支付完成, 0:未支付)',
     `status` int(1) NOT NULL DEFAULT 1 COMMENT '数据状态',
     `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
@@ -152,7 +152,7 @@ ALTER TABLE `ea_user_condition` CHANGE `marriage` `marriage` VARCHAR(255) NULL D
 ALTER TABLE `ea_user_condition` CHANGE `house` `house` VARCHAR(255) NULL DEFAULT NULL COMMENT '购房情况 {checkbox} (1:已购房无贷款, 2:已购房有贷款, 3:与父母同住, 4:暂未购房, 5:租房)';
 
 
--- send_code table
+-- banner table
 CREATE TABLE `ea_banner` (
     `banner_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '数据ID',
     `type` int(1) NOT NULL DEFAULT 1 COMMENT '投放位置 {radio} (1:首页Banner, 2:活动也Banner)',
@@ -165,7 +165,42 @@ CREATE TABLE `ea_banner` (
     PRIMARY KEY (`banner_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='系统Banner广告图';
 -- php think curd -t banner
+
 ALTER TABLE `ea_banner` ADD `weight` INT(10) NOT NULL DEFAULT '0' COMMENT '权重 {text}' AFTER `str`;
 
 -- user table add user score field
 ALTER TABLE `ea_user` ADD `score` INT(3) NOT NULL DEFAULT '50' COMMENT '用户评分 {text}' AFTER `phone`;
+
+-- vip table
+CREATE TABLE `ea_vip` (
+    `vip_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '数据ID',
+    `name` varchar(255) NOT NULL COMMENT 'VIP套餐名称 {text}',
+    `days` int(10) NOT NULL DEFAULT 1 COMMENT '有效天数 {text}',
+    `numbers` int(10) NOT NULL COMMENT '授权次数 {text}',
+    `total_fee` float(10,2) NOT NULL DEFAULT 0.00 COMMENT '开通金额 {text}',
+    `weight` int(10) NOT NULL DEFAULT 0 COMMENT '套餐权重 {text}',
+    `status` int(1) NOT NULL DEFAULT 0 COMMENT '数据状态 {radio} (1:数据正常, 0:数据已删除)',
+    `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
+    `update_time` int(11) DEFAULT NULL COMMENT '更新时间',
+    `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`vip_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='VIP套餐数据表';
+-- php think curd -t vip
+
+-- vip_pay table
+CREATE TABLE `ea_vip_pay` (
+    `pay_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '数据ID',
+    `vip_id` int(10) NOT NULL DEFAULT 1 COMMENT 'VIP套餐ID {text}',
+    `user_id` int(10) NOT NULL DEFAULT 1 COMMENT '用户UID {text}',
+    `order_id` varchar(255) NOT NULL COMMENT 'VIP套餐名称 {text}',
+    `total_fee` float(10,2) NOT NULL DEFAULT 0.00 COMMENT '开通金额 {text}',
+    `days` int(10) NOT NULL DEFAULT 1 COMMENT '有效天数 {text}',
+    `numbers` int(10) NOT NULL COMMENT '授权次数 {text}',
+    `flag` int(1) NOT NULL DEFAULT 0 COMMENT '支付状态 {radio} (1:支付完成, 0:未支付)',
+    `status` int(1) NOT NULL DEFAULT 0 COMMENT '数据状态 {radio} (1:数据正常, 0:已失效)',
+    `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
+    `update_time` int(11) DEFAULT NULL COMMENT '更新时间',
+    `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`pay_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='VIP套餐订单表';
+-- php think curd -t vip_pay
