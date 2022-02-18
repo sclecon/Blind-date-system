@@ -207,3 +207,5 @@ CREATE TABLE `ea_vip_pay` (
 
 -- user table add VIP info
 ALTER TABLE `ea_user` ADD `vip` INT(1) NOT NULL DEFAULT '0' COMMENT 'VIP状态 {radio} (1:已开通, 0:未开通)' AFTER `car_buy`, ADD `numbers` INT(10) NOT NULL DEFAULT '0' COMMENT 'VIP次数 {text}' AFTER `vip`, ADD `expire` DATETIME NULL DEFAULT NULL COMMENT 'VIP过期时间 {datetime}' AFTER `numbers`;
+ALTER TABLE `ea_vip_pay` CHANGE `order_id` `order_id` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单号 {text}';
+ALTER TABLE `ea_vip_pay` ADD `name` VARCHAR(255) NOT NULL COMMENT '订单名称 {text}' AFTER `order_id`;
