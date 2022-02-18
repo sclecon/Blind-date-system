@@ -3,7 +3,6 @@
 namespace app\connector\services;
 
 use app\admin\model\UserCondition;
-use app\connector\exception\HandleException;
 use app\connector\utils\traits\BaseModelService;
 
 class ConditionService
@@ -34,5 +33,17 @@ class ConditionService
             'create_time'   =>  time(),
             'status'    =>  1
         ]);
+    }
+
+    public function getEduList(){
+        return $this->getModel()->getEduList();
+    }
+
+    public function getMarriageList(){
+        return $this->getModel()->getMarriageList();
+    }
+
+    public function getHouseList(){
+        return $this->getModel()->getHouseList();
     }
 }
