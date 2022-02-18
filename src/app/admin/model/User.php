@@ -18,7 +18,7 @@ class User extends TimeModel
 
 
 
-    public function getVIPList(){
+    public function getVipList(){
         return ['1'=>'已开通', '0'=>'未开通或已过期'];
     }
 

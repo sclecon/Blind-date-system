@@ -48,6 +48,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     // {field: 'house', search: 'select', selectList: {"1":"已购房无贷款","2":"已购房有贷款","3":"与父母同住","4":"暂未购房","5":"租房"}, title: '购房情况'},
                     // {field: 'car_buy', search: 'select', selectList: {"1":"已买车","2":"未买车"}, title: '购车情况'},
                     // {field: 'status', title: '会员状态', templet: ea.table.switch},
+                    {field: 'vip', search: 'select', selectList: {"1":"已授权","0":"未授权或已过期"}, title: 'VIP授权'},
                     {field: 'create_time', title: '注册时间'},
                     {width: 250, title: '操作', templet: ea.table.tool},
                 ]],

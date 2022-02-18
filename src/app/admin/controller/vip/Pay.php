@@ -13,6 +13,8 @@ use think\App;
 class Pay extends AdminController
 {
 
+    protected $pk = 'pay_id';
+
     use \app\admin\traits\Curd;
 
     public function __construct(App $app)

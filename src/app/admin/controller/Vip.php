@@ -13,6 +13,8 @@ use think\App;
 class Vip extends AdminController
 {
 
+    protected $pk = 'vip_id';
+
     use \app\admin\traits\Curd;
 
     public function __construct(App $app)

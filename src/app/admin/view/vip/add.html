@@ -1,12 +1,6 @@
 <div class="layuimini-container">
     <form id="app-form" class="layui-form layuimini-form">
-        
-        <div class="layui-form-item">
-            <label class="layui-form-label">数据ID</label>
-            <div class="layui-input-block">
-                <input type="text" name="vip_id" class="layui-input" lay-verify="required" placeholder="请输入数据ID" value="">
-            </div>
-        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">VIP套餐名称</label>
             <div class="layui-input-block">
@@ -35,14 +29,6 @@
             <label class="layui-form-label">套餐权重</label>
             <div class="layui-input-block">
                 <input type="text" name="weight" class="layui-input" lay-verify="required" placeholder="请输入套餐权重" value="0">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">数据状态</label>
-            <div class="layui-input-block">
-                {foreach $getStatusList as $k=>$v}
-                <input type="radio" name="status" value="{$k}" title="{$v}" {in name="k" value="0"}checked=""{/in}>
-                {/foreach}
             </div>
         </div>
 

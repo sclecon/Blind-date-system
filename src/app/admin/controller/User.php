@@ -39,7 +39,7 @@ class User extends AdminController
 
         $this->assign('getIncomeList', $this->model->getIncomeList());
 
-        $this->assign('getVIPList', $this->model->getVIPList());
+        $this->assign('getVipList', $this->model->getVipList());
 
     }
 

@@ -168,6 +168,27 @@
             </div>
         </div>
 
+        <div class="layui-form-item">
+            <label class="layui-form-label">VIP授权</label>
+            <div class="layui-input-block">
+                {foreach $getVipList as $k=>$v}
+                <input type="radio" name="vip" value="{$k}" title="{$v}" {in name="k" value="$row.vip"}checked=""{/in}>
+                {/foreach}
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">剩余VIP查看次数</label>
+            <div class="layui-input-block">
+                <input type="text" name="numbers" class="layui-input"  placeholder="剩余请输入VIP查看次数" value="{$row.numbers|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">VIP过期时间</label>
+            <div class="layui-input-block">
+                <input type="text" name="expire"  data-date="" data-date-type="datetime" class="layui-input"  placeholder="请输入VIP过期时间" value="{$row.expire|default=''}">
+            </div>
+        </div>
+
         <div class="hr-line"></div>
         <div class="layui-form-item text-center">
             <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
