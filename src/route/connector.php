@@ -47,6 +47,7 @@ Route::group('order', function (){
     Route::post('create', '\app\connector\controller\Order::create');
     Route::post('status', '\app\connector\controller\Order::status');
     Route::post('query', '\app\connector\controller\Order::query');
+    Route::post('get/phone', '\app\connector\controller\Order::getUserPhone');
 })->middleware(AuthMiddleware::class);
 
 Route::rule('order/notify', '\app\connector\controller\Order::notify');

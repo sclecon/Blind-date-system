@@ -2,6 +2,7 @@
 
 namespace app\connector\services;
 
+use app\admin\model\User;
 use app\admin\model\UserPay;
 use app\connector\exception\HandleException;
 use app\connector\utils\traits\BaseModelService;
@@ -43,9 +44,24 @@ class OrderService
         $order = $this->getModel()
             ->where('buy_user_id', $buy_user_id)
             ->where('user_id', $user_id)
+            ->where('status', 1)
             ->field('flag')
             ->find();
         return is_null($order) ? 0 : $order->flag;
+    }
+
+    public function findUserPhone(string $user_id, string $buy_user_id) : string {
+        $order = $this->getModel()
+            ->where('buy_user_id', $buy_user_id)
+            ->where('user_id', $user_id)
+            ->where('status', 1)
+            ->find();
+        if (is_null($order)){
+            throw new HandleException('用户未购买授权或授权已使用');
+        }
+        $order->status = 0;
+        $order->save();
+        return (new User())->where('user_id', $buy_user_id)->value('phone');
     }
 
     public function findOrderByOrderID(string $order_id){

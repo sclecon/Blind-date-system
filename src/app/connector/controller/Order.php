@@ -33,6 +33,14 @@ class Order extends BaseController
         ]);
     }
 
+    public function getUserPhone() : Response {
+        $input = Verify::get(['user_id'], 'post');
+        return Json::success('query user buy phone successfully', [
+            'user_id'    =>  $input->user_id,
+            'phone'     =>  (new OrderService())->findUserPhone(Config::get('user.id'), $input->user_id)
+        ]);
+    }
+
     public function notify() : string {
         $orderService = new OrderService();
         $orderService->notify(function ($order_id) use ($orderService) {
