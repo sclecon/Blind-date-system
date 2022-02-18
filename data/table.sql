@@ -150,3 +150,18 @@ CREATE TABLE `ea_user_condition` (
 ALTER TABLE `ea_user_condition` CHANGE `edu` `edu` VARCHAR(255) NULL DEFAULT NULL COMMENT '学历 {checkbox} (1:初中, 2:中专, 3:高中, 4:大专, 5:本科, 6:硕士, 7:博士, 8:博士后)';
 ALTER TABLE `ea_user_condition` CHANGE `marriage` `marriage` VARCHAR(255) NULL DEFAULT NULL COMMENT '婚姻状况 {checkbox} (1:未婚, 2:离异, 3:丧偶, 4:已婚)';
 ALTER TABLE `ea_user_condition` CHANGE `house` `house` VARCHAR(255) NULL DEFAULT NULL COMMENT '购房情况 {checkbox} (1:已购房无贷款, 2:已购房有贷款, 3:与父母同住, 4:暂未购房, 5:租房)';
+
+
+-- send_code table
+CREATE TABLE `ea_banner` (
+    `send_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '数据ID',
+    `type` int(1) NOT NULL DEFAULT 1 COMMENT '投放位置 {radio} (1:首页Banner, 2:活动也Banner)',
+    `url` char(255) NOT NULL COMMENT '图片 {image}',
+    `str` varchar(255) NOT NULL COMMENT '文本 {text}',
+    `status` int(1) NOT NULL DEFAULT 0 COMMENT '数据状态 {radio} (1:显示正常, 0:显示错误)',
+    `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
+    `update_time` int(11) DEFAULT NULL COMMENT '更新时间',
+    `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`send_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='系统Banner广告图';
+-- php think curd -t ea_banner
