@@ -154,7 +154,7 @@ ALTER TABLE `ea_user_condition` CHANGE `house` `house` VARCHAR(255) NULL DEFAULT
 
 -- send_code table
 CREATE TABLE `ea_banner` (
-    `send_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '数据ID',
+    `banner_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '数据ID',
     `type` int(1) NOT NULL DEFAULT 1 COMMENT '投放位置 {radio} (1:首页Banner, 2:活动也Banner)',
     `url` char(255) NOT NULL COMMENT '图片 {image}',
     `str` varchar(255) NOT NULL COMMENT '文本 {text}',
@@ -162,6 +162,7 @@ CREATE TABLE `ea_banner` (
     `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
     `update_time` int(11) DEFAULT NULL COMMENT '更新时间',
     `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
-    PRIMARY KEY (`send_id`)
+    PRIMARY KEY (`banner_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='系统Banner广告图';
--- php think curd -t ea_banner
+-- php think curd -t banner
+ALTER TABLE `ea_banner` ADD `weight` INT(10) NOT NULL DEFAULT '0' COMMENT '权重 {text}' AFTER `str`;
