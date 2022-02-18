@@ -15,6 +15,13 @@ class User extends TimeModel
 
 
 
+
+
+
+    public function getVIPList(){
+        return ['1'=>'已开通', '0'=>'未开通或已过期'];
+    }
+
     public function getIncomeList(){
         return ['1'=>'3000元以内', '2'=>'3000-5000元', '3'=>'5000-10000元', '4'=>'10000-30000元', '5'=>'30000元以上'];
     }

@@ -7,6 +7,8 @@ use app\common\model\TimeModel;
 class VipPay extends TimeModel
 {
 
+    protected $pk = 'pay_id';
+
     protected $name = "vip_pay";
 
     protected $deleteTime = "delete_time";

@@ -7,6 +7,8 @@ use app\common\model\TimeModel;
 class Vip extends TimeModel
 {
 
+    protected $pk = 'vip_id';
+
     protected $name = "vip";
 
     protected $deleteTime = "delete_time";
