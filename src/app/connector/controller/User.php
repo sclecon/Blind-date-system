@@ -108,8 +108,9 @@ class User extends BaseController
             'search'            =>  false,
             'page'              =>  1,
             'number'            =>  10,
+            'order'             =>  'user_id',
         ], 'post');
-        $list = (new UserService())->getList($default->page, $default->number, $input->sex, $input->city, $input->longitude, $input->dimension, (array) $default);
+        $list = (new UserService())->getList($default->page, $default->number, $input->sex, $input->city, $input->longitude, $input->dimension, (array) $default, $default->order);
         return Json::success('get user list', [
             'list'  =>  $list,
         ]);

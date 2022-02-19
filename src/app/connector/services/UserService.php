@@ -168,16 +168,27 @@ class UserService
         return $user;
     }
 
-    public function getList(string $page, string $number, string $sex, string $city, string $longitude, string $dimension, array $search = []){
+    public function getList(string $page, string $number, string $sex, string $city, string $longitude, string $dimension, array $search = [], string $order = 'user_id'){
         unset($search['page'], $search['number']);
-        $fields = ['user_id', 'username', 'avatar', 'remark', 'sex', 'height', 'birthday'];
+        $order = in_array($order, ['user_id', 'score', 'location']) ? $order : 'user_id';
+        $fields = ['user_id', 'username', 'avatar', 'remark', 'sex', 'height', 'birthday', 'vip', 'numbers', 'expire', 'score'];
+
+        $city = htmlspecialchars_decode($city);
+        $city = json_decode($city, true) ?: [];
+        $city = isset($city['name']) ? $city['name'] : '';
+        $city = explode(' ', $city);
+        $city = $city[0] ?: false;
         $users = $this->userModel
             ->where('sex', $sex)
-            ->where('city', $city)
+            ->where(function ($query) use ($city) {
+                if ($city !== false){
+                    $query->where('city', 'like', "%{$city}%");
+                }
+            })
             ->where((new SearchService())->init($search))
             ->field($fields)
             ->field(Location::distanceByMysqlM($longitude, $dimension, 'longitude', 'dimension', 'location'))
-            ->order('location', 'desc')
+            ->order($order, 'desc')
             ->page($page, $number)
             ->select();
         foreach ($users as &$user){
