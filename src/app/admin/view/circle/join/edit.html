@@ -1,28 +1,10 @@
 <div class="layuimini-container">
     <form id="app-form" class="layui-form layuimini-form">
-        
-        <div class="layui-form-item">
-            <label class="layui-form-label">数据ID</label>
-            <div class="layui-input-block">
-                <input type="text" name="join_id" class="layui-input" lay-verify="required" placeholder="请输入数据ID" value="{$row.join_id|default=''}">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">圈子ID</label>
-            <div class="layui-input-block">
-                <input type="text" name="circle_id" class="layui-input" lay-verify="required" placeholder="请输入圈子ID" value="{$row.circle_id|default=''}">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户ID</label>
-            <div class="layui-input-block">
-                <input type="text" name="user_id" class="layui-input" lay-verify="required" placeholder="请输入用户ID" value="{$row.user_id|default=''}">
-            </div>
-        </div>
+
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">加入说明</label>
             <div class="layui-input-block">
-                <textarea name="intro" class="layui-textarea" lay-verify="required" placeholder="请输入加入说明">{$row.intro|raw|default=''}</textarea>
+                <textarea name="intro" class="layui-textarea" lay-verify="required" placeholder="请输入加入说明" disabled>{$row.intro|raw|default=''}</textarea>
             </div>
         </div>
         <div class="layui-form-item">

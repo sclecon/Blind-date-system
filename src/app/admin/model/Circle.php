@@ -7,6 +7,8 @@ use app\common\model\TimeModel;
 class Circle extends TimeModel
 {
 
+    protected $pk = 'circle_id';
+
     protected $name = "circle";
 
     protected $deleteTime = "delete_time";

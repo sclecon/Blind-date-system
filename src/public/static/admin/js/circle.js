@@ -9,6 +9,8 @@ define(["jquery", "easy-admin"], function ($, ea) {
         delete_url: 'circle/delete',
         export_url: 'circle/export',
         modify_url: 'circle/modify',
+        pk: 'circle_id',
+        join_url: 'circle.join/index'
     };
 
     var Controller = {
@@ -17,7 +19,27 @@ define(["jquery", "easy-admin"], function ($, ea) {
             ea.table.render({
                 init: init,
                 cols: [[
-                    {type: 'checkbox'},                    {field: 'circle_id', title: '数据ID'},                    {field: 'name', title: '圈子名称'},                    {field: 'intro', title: '圈子说明'},                    {field: 'join', title: '授权次数'},                    {field: 'weight', title: '权重'},                    {field: 'status', search: 'select', selectList: {"1":"数据正常","0":"数据已删除"}, title: '数据状态', templet: ea.table.switch},                    {field: 'create_time', title: '创建时间'},                    {width: 250, title: '操作', templet: ea.table.tool},
+                    {type: 'checkbox'},
+                    {field: 'circle_id', title: '数据ID'},
+                    {field: 'name', title: '圈子名称'},
+                    {field: 'intro', title: '圈子说明'},
+                    {field: 'join', title: '加入人数'},
+                    {field: 'weight', title: '权重'},
+                    {field: 'create_time', title: '创建时间'},
+                    {width: 250, title: '操作', templet: ea.table.tool, operat: [
+                            [{
+                                class: 'layui-btn layui-btn-xs layui-btn-success',
+                                method: 'open',
+                                text: '参与记录',
+                                auth: 'edit',
+                                url: init.join_url,
+                                extend: 'data-full="true"',
+                                field: 'circle_id',
+                            }],
+                            'edit',
+                            'delete'
+                        ]
+                    },
                 ]],
             });
 

@@ -13,6 +13,8 @@ use think\App;
 class Circle extends AdminController
 {
 
+    protected $pk = 'circle_id';
+
     use \app\admin\traits\Curd;
 
     public function __construct(App $app)

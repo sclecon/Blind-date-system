@@ -239,3 +239,5 @@ CREATE TABLE `ea_circle_join` (
     PRIMARY KEY (`join_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='圈子加入数据表';
 -- php think curd -t circle
+ALTER TABLE `ea_circle` CHANGE `join` `join` INT NOT NULL COMMENT '加入人数 {text}';
+ALTER TABLE `ea_circle` CHANGE `join` `join` INT NOT NULL DEFAULT '0' COMMENT '加入人数 {text}';

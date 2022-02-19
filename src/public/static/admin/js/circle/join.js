@@ -9,6 +9,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         delete_url: 'circle.join/delete',
         export_url: 'circle.join/export',
         modify_url: 'circle.join/modify',
+        pk: 'join_id',
     };
 
     var Controller = {
@@ -16,8 +17,18 @@ define(["jquery", "easy-admin"], function ($, ea) {
         index: function () {
             ea.table.render({
                 init: init,
+                toolbar: ['refresh', 'delete', 'export'],
                 cols: [[
-                    {type: 'checkbox'},                    {field: 'join_id', title: '数据ID'},                    {field: 'circle_id', title: '圈子ID'},                    {field: 'user_id', title: '用户ID'},                    {field: 'intro', title: '加入说明'},                    {field: 'status', search: 'select', selectList: {"1":"等待审核","0":"审核失败","2":"审核通过"}, title: '审核状态', templet: ea.table.switch},                    {field: 'create_time', title: '创建时间'},                    {width: 250, title: '操作', templet: ea.table.tool},
+                    {type: 'checkbox'},
+                    {field: 'join_id', title: '数据ID'},
+                    {field: 'circle_id', title: '圈子ID'},
+                    {field: 'user_id', title: '用户ID'},
+                    {field: 'username', title: '用户名'},
+                    {field: 'phone', title: '手机号'},
+                    {field: 'intro', title: '加入说明'},
+                    {field: 'status', search: 'select', selectList: {"1":"等待审核","0":"审核失败","2":"审核通过"}, title: '审核状态', templet: ea.table.select},
+                    {field: 'create_time', title: '创建时间'},
+                    {width: 250, title: '操作', templet: ea.table.tool},
                 ]],
             });
 

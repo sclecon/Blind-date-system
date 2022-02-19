@@ -1,12 +1,6 @@
 <div class="layuimini-container">
     <form id="app-form" class="layui-form layuimini-form">
-        
-        <div class="layui-form-item">
-            <label class="layui-form-label">数据ID</label>
-            <div class="layui-input-block">
-                <input type="text" name="circle_id" class="layui-input" lay-verify="required" placeholder="请输入数据ID" value="{$row.circle_id|default=''}">
-            </div>
-        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">圈子名称</label>
             <div class="layui-input-block">
@@ -20,7 +14,7 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">授权次数</label>
+            <label class="layui-form-label">加入人数</label>
             <div class="layui-input-block">
                 <input type="text" name="join" class="layui-input" lay-verify="required" placeholder="请输入授权次数" value="{$row.join|default=''}">
             </div>
@@ -29,14 +23,6 @@
             <label class="layui-form-label">权重</label>
             <div class="layui-input-block">
                 <input type="text" name="weight" class="layui-input" lay-verify="required" placeholder="请输入权重" value="{$row.weight|default=''}">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">数据状态</label>
-            <div class="layui-input-block">
-                {foreach $getStatusList as $k=>$v}
-                <input type="radio" name="status" value="{$k}" title="{$v}" {in name="k" value="$row.status"}checked=""{/in}>
-                {/foreach}
             </div>
         </div>
 
