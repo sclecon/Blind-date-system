@@ -137,7 +137,6 @@ class Weixin implements PayPort
         ];
         $config['sandbox'] = $this->sandbox;
         $config['notify_url'] = $this->getNotifyUrl();
-        halt($config);
         return $config;
     }
 

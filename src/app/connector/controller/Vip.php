@@ -50,11 +50,11 @@ class Vip extends BaseController
         );
     }
 
-    public function check(){
+    public function query(){
         $input = Verify::get(['order_id'], 'post');
         return Json::success('get vip payment status successfully', [
             'order_id'  =>  $input->order_id,
-            'status'    =>  $this->vipOrder->getOrderStatus($input->order)
+            'status'    =>  $this->vipOrder->getOrderStatus($input->order_id)
         ]);
     }
 
@@ -70,5 +70,13 @@ class Vip extends BaseController
             $vipOrder->success($order_id);
         });
         return "SUCCESS";
+    }
+
+    public function getUserPhone(){
+        $input = Verify::get(['user_id'], 'post');
+        return Json::success('get user phone successfully', [
+            'user_id'   =>  $input->user_id,
+            'phone'     =>  $this->userService->vipGetUserPhone(Config::get('user.id'), $input->user_id)
+        ]);
     }
 }

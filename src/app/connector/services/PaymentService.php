@@ -51,8 +51,8 @@ class PaymentService
         if ($this->order['driver'] === 'weixin' && is_string($this->order['params'][0])){
             $derve = $derve->setOpenID($this->order['params'][0]);
         }
-        if ($this->order['driver'] === 'weixin' && is_string($this->order['params'][1])){
-            $derve = $derve->setNotify($this->order['params'][1]);
+        if ($this->order['driver'] === 'weixin' && isset($this->order['params'][1]) && is_string($this->order['params'][1])){
+            $derve = $derve->setNotifyUrl($this->order['params'][1]);
         }
         return $derve->pay($this->order['support'], $this->order['order_id'], $this->order['total_fee'], $this->order['subject']);
     }

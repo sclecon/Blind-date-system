@@ -14,7 +14,6 @@ class VipService
 
     public function list(){
         return $this->getModel()
-            ->where('status', 1)
             ->field('vip_id')
             ->field('name')
             ->field('days')
@@ -26,9 +25,9 @@ class VipService
     }
 
     public function get(string $vip_id){
-        $vip = $this->getModel()->where('status', 1)->find($vip_id);
+        $vip = $this->getModel()->find($vip_id);
         if (is_null($vip)){
-            throw new HandleException('会员套餐不存在');
+            throw new HandleException('会员套餐不存在', 404);
         }
         return $vip;
     }

@@ -236,20 +236,57 @@ class UserService
     }
 
     public function openVip(string $user_id, string $days, string $numbers){
-        $user = $this->userModel
-            ->where('user_id', $user_id)
-            ->find('vip')
-            ->find('expire')
-            ->find('numbers')
-            ->find();
-        if (is_null($user)){
-            throw new HandleException('get user fail, user non-existent', 404);
-        }
+        $user = $this->getUserVipData($user_id);
         $user->vip = 1;
         $user->numbers += intval($numbers);
         $expire = strtotime($user->expire) ?: time();
         $user->expire = date('Y-m-d H:i:s', $expire + ($days * 86400));
         return $user->save();
+    }
+
+    public function vipGetUserPhone(string $vip_user_id, string $view_user_id){
+        $user = $this->getUserVipData($vip_user_id);
+        $timestamp = time();
+        $expire = strtotime($user->expire) ?: $timestamp;
+        if ($user->vip == 0 or $user->numbers <= 0 or $expire < $timestamp){
+            throw new HandleException('您当前不是VIP，无法享用VIP权益', 403);
+        }
+        $user->numbers -= 1;
+        $user->save();
+        $view_user = $this->userModel->where('user_id', $view_user_id)->field('phone')->find();
+        if (is_null($view_user)){
+            throw new HandleException('查看的用户信息不存在');
+        }
+        $this->vipCheckStatus();
+        return $view_user->phone;
+    }
+
+    public function vipCheckStatus(){
+        return $this->userModel
+            # ->fetchSql()
+            ->where('vip', 1)
+            ->where(function ($query){
+                $query->where('numbers', '<=', 0);
+                $query->whereOr('expire', '<', date('Y-m-d H:i:s'));
+            })
+            ->save([
+                'vip'   =>  0,
+                'numbers'   =>  0,
+                'expire'    =>  null,
+            ]);
+    }
+
+    protected function getUserVipData(string $user_id){
+        $user = $this->userModel
+            ->where('user_id', $user_id)
+            ->field('vip')
+            ->field('expire')
+            ->field('numbers')
+            ->find();
+        if (is_null($user)){
+            throw new HandleException('get user fail, user non-existent', 404);
+        }
+        return $user;
     }
 
 

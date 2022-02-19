@@ -56,3 +56,11 @@ Route::group('banner', function (){
     Route::post('home', '\app\connector\controller\Banner::home');
     Route::post('event', '\app\connector\controller\Banner::event');
 });
+
+Route::rule('vip/pay/notify', '\app\connector\controller\Vip::notify');
+Route::group('vip', function (){
+    Route::post('list', '\app\connector\controller\Vip::list');
+    Route::post('pay/query', '\app\connector\controller\Vip::query');
+    Route::post('user/phone', '\app\connector\controller\Vip::getUserPhone');
+    Route::post('pay', '\app\connector\controller\Vip::pay');
+})->middleware(AuthMiddleware::class);
