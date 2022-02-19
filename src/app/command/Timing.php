@@ -4,6 +4,7 @@ declare (strict_types = 1);
 namespace app\command;
 
 use app\connector\services\EventService;
+use app\connector\services\UserService;
 use think\console\Command;
 use think\console\Input;
 use think\console\input\Argument;
@@ -14,7 +15,8 @@ class Timing extends Command
 {
 
     protected $types = [
-        'event' // 活动状态更新
+        'event', // 活动状态更新
+        'vip',  // VIP状态更新
     ];
 
     protected function configure()
@@ -46,6 +48,13 @@ class Timing extends Command
         $output->info('已检查所有未开始活动并且将已达到开始时间的活动状态改为进行中');
         $eventService->checkFlagAndUpdate('over_time', 3);
         $output->info('已检查所有进行中活动并且将已达到结束时间的活动状态改为已结束');
+        return true;
+    }
+
+    protected function vip(Input $input, Output $output) : bool {
+        $user = new UserService();
+        $user->vipCheckStatus();
+        $output->info('VIP状态检查更新已结束');
         return true;
     }
 }
