@@ -13,12 +13,22 @@ class EventService
 
     use BaseModelService;
 
-    public function page(string $flag, string $page, string $number){
+    public function page(string $flag, string $page, string $number, string $city){
         $response = $this->getModel();
         if (in_array($flag, [1, 2, 3])){
             $response = $response->where('flag', $flag);
         }
+        $city = htmlspecialchars_decode($city);
+        $city = json_decode($city, true) ?: [];
+        $city = isset($city['name']) ? $city['name'] : '';
+        $city = explode(' ', $city);
+        $city = $city[0] ?: false;
         return $response
+            ->where(function ($query) use ($city) {
+                if ($city !== false){
+                    $query->where('city', 'like', "%{$city}%");
+                }
+            })
             ->page($page, $number)
             ->field('event_id, image, subject, remark, start_time, over_time, flag, total_fee, address')
             ->select();

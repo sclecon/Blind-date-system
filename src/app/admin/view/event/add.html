@@ -36,6 +36,23 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">活动城市</label>
+            <div class="layui-input-block">
+                <select lay-verify="required" name="city">
+                    <option>请选择城市</option>
+                    {foreach $city as $_s => $vo }
+
+                        <optgroup label="{$_s}">
+                            {foreach $vo as $_city }
+                                <option value="{$_city}">{$_city}</option>
+                            {/foreach}
+                        </optgroup>
+
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">活动地址</label>
             <div class="layui-input-block">
                 <input type="text" name="address" class="layui-input" lay-verify="required" placeholder="请输入活动举行地址 不输入则表示线上活动" value="">

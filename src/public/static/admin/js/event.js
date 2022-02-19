@@ -25,6 +25,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     {field: 'remark', title: '简介'},
                     {field: 'image', title: '封面图', templet: ea.table.image},
                     {field: 'total_fee', title: '价格'},
+                    {field: 'city', title: '城市'},
                     {field: 'address', title: '地址'},
                     {field: 'start_time', title: '开始时间'},
                     {field: 'over_time', title: '结束时间'},

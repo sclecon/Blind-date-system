@@ -6,6 +6,7 @@ use app\common\controller\AdminController;
 use EasyAdmin\annotation\ControllerAnnotation;
 use EasyAdmin\annotation\NodeAnotation;
 use think\App;
+use think\facade\Config;
 
 /**
  * @ControllerAnnotation(title="event")
@@ -25,6 +26,8 @@ class Event extends AdminController
         $this->assign('getFlagList', $this->model->getFlagList());
 
         $this->assign('getStatusList', $this->model->getStatusList());
+
+        $this->assign('city', Config::get('city'));
 
     }
 
