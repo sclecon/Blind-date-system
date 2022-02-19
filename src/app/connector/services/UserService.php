@@ -200,6 +200,22 @@ class UserService
         return $users;
     }
 
+    public function getListByUserID(array $userlist) : array {
+        if (count($userlist) == 0){
+            return [];
+        }
+        $users = $this->userModel
+            ->where('user_id', 'in', $userlist)
+            ->field(['user_id', 'username', 'avatar', 'remark', 'sex', 'height', 'birthday', 'vip', 'numbers', 'expire', 'score'])
+            ->select();
+        foreach ($users as &$user){
+            $user->avatar = explode('|', $user->avatar);
+            $user->sex = is_null($user->sex) === false ? $this->userModel->getSexList()[$user->sex] : '暂未选择';
+            $user->age = $this->getAgeByBirthday($user->birthday);
+        }
+        return $users->toArray();
+    }
+
     public function hasPhone(string $phone) : bool {
         $phone = $this->userModel
             ->where('phone', $phone)

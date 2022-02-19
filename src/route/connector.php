@@ -64,3 +64,9 @@ Route::group('vip', function (){
     Route::post('user/phone', '\app\connector\controller\Vip::getUserPhone');
     Route::post('pay', '\app\connector\controller\Vip::pay');
 })->middleware(AuthMiddleware::class);
+
+Route::group('circle', function (){
+    Route::post('list', '\app\connector\controller\Circle::list');
+    Route::post('detail', '\app\connector\controller\Circle::detail');
+    Route::post('join', '\app\connector\controller\Circle::join');
+})->middleware(AuthMiddleware::class);

@@ -23,7 +23,6 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     {field: 'circle_id', title: '数据ID'},
                     {field: 'name', title: '圈子名称'},
                     {field: 'intro', title: '圈子说明'},
-                    {field: 'join', title: '加入人数'},
                     {field: 'weight', title: '权重'},
                     {field: 'create_time', title: '创建时间'},
                     {width: 250, title: '操作', templet: ea.table.tool, operat: [
