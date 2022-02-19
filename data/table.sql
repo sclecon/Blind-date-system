@@ -209,3 +209,33 @@ CREATE TABLE `ea_vip_pay` (
 ALTER TABLE `ea_user` ADD `vip` INT(1) NOT NULL DEFAULT '0' COMMENT 'VIP状态 {radio} (1:已开通, 0:未开通)' AFTER `car_buy`, ADD `numbers` INT(10) NOT NULL DEFAULT '0' COMMENT 'VIP次数 {text}' AFTER `vip`, ADD `expire` DATETIME NULL DEFAULT NULL COMMENT 'VIP过期时间 {datetime}' AFTER `numbers`;
 ALTER TABLE `ea_vip_pay` CHANGE `order_id` `order_id` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单号 {text}';
 ALTER TABLE `ea_vip_pay` ADD `name` VARCHAR(255) NOT NULL COMMENT '订单名称 {text}' AFTER `order_id`;
+
+
+-- create circle table
+CREATE TABLE `ea_circle` (
+    `circle_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '数据ID',
+    `name` varchar(255) NOT NULL COMMENT '圈子名称 {text}',
+    `intro` varchar(255) NOT NULL DEFAULT 1 COMMENT '圈子说明 {textarea}',
+    `join` int(10) NOT NULL COMMENT '授权次数 {text}',
+    `weight` int(10) NOT NULL DEFAULT 0 COMMENT '权重 {text}',
+    `status` int(1) NOT NULL DEFAULT 1 COMMENT '数据状态 {radio} (1:数据正常, 0:数据已删除)',
+    `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
+    `update_time` int(11) DEFAULT NULL COMMENT '更新时间',
+    `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`circle_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='圈子数据表';
+-- php think curd -t circle
+
+-- create circle table
+CREATE TABLE `ea_circle_join` (
+    `join_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '数据ID',
+    `circle_id` int(10) NOT NULL DEFAULT 1 COMMENT '圈子ID {text}',
+    `user_id` int(10) NOT NULL DEFAULT 1 COMMENT '用户ID {text}',
+    `intro` varchar(255) NOT NULL DEFAULT 1 COMMENT '加入说明 {textarea}',
+    `status` int(1) NOT NULL DEFAULT 1 COMMENT '审核状态 {radio} (1:等待审核, 0:审核失败, 2:审核通过)',
+    `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
+    `update_time` int(11) DEFAULT NULL COMMENT '更新时间',
+    `delete_time` int(11) DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`join_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT  CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='圈子加入数据表';
+-- php think curd -t circle
