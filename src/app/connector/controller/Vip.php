@@ -4,6 +4,7 @@ namespace app\connector\controller;
 
 use app\BaseController;
 use app\connector\response\Json;
+use app\connector\services\UserService;
 use app\connector\services\VipPayService;
 use app\connector\services\VipService;
 use app\connector\utils\Verify;
@@ -22,11 +23,17 @@ class Vip extends BaseController
      */
     protected $vipOrder;
 
-    public function __construct(App $app, VipService $vip, VipPayService $vipOrder)
+    /**
+     * @var UserService
+     */
+    protected $userService;
+
+    public function __construct(App $app, VipService $vip, VipPayService $vipOrder, UserService $userService)
     {
         parent::__construct($app);
         $this->vip = $vip;
         $this->vipOrder = $vipOrder;
+        $this->userService = $userService;
     }
 
     public function list(){
@@ -53,12 +60,14 @@ class Vip extends BaseController
 
     public function notify() : string {
         $vipOrder = $this->vipOrder;
-        $vipOrder->notify(function ($order_id) use ($vipOrder) {
+        $userService = $this->userService;
+        $vipOrder->notify(function ($order_id) use ($vipOrder, $userService) {
             $order = $vipOrder->get($order_id, false);
             if (is_null($order)){
                 return false;
             }
-            return $vipOrder->success($order_id);
+            $userService->openVip($order->user_id, $order->days, $order->numbers);
+            $vipOrder->success($order_id);
         });
         return "SUCCESS";
     }

@@ -5,6 +5,7 @@ namespace app\connector\services;
 use app\admin\model\VipPay;
 use app\connector\exception\HandleException;
 use app\connector\utils\traits\BaseModelService;
+use think\facade\Request;
 
 class VipPayService
 {
@@ -15,8 +16,9 @@ class VipPayService
     public function pay(string $vip_id, string $user_id, string $name, string $days, string $numbers, string $total_fee, string $code){
         $openid = (new WxAppService())->getOpenID($code);
         $orderData = $this->createOrderData($vip_id, $user_id, $name, $days, $numbers, $total_fee);
+        $notifyUrl = Request::domain().'/vip/pay/notify';
         $payConfig = (new PaymentService())
-            ->setOrder('wxapp', 'weixin', $orderData['order_id'], $orderData['total_fee'], $orderData['name'], $openid)
+            ->setOrder('wxapp', 'weixin', $orderData['order_id'], $orderData['total_fee'], $orderData['name'], $openid, $notifyUrl)
             ->pay();
         $pay_id = $this->getModel()->insert($orderData, true);
         return [

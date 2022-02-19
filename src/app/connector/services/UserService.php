@@ -235,6 +235,23 @@ class UserService
         return Config::set(['id'=>$user['user_id'], 'phone'=>$user['phone']], 'user');
     }
 
+    public function openVip(string $user_id, string $days, string $numbers){
+        $user = $this->userModel
+            ->where('user_id', $user_id)
+            ->find('vip')
+            ->find('expire')
+            ->find('numbers')
+            ->find();
+        if (is_null($user)){
+            throw new HandleException('get user fail, user non-existent', 404);
+        }
+        $user->vip = 1;
+        $user->numbers += intval($numbers);
+        $expire = strtotime($user->expire) ?: time();
+        $user->expire = date('Y-m-d H:i:s', $expire + ($days * 86400));
+        return $user->save();
+    }
+
 
     private function getAgeByBirthday($birthday){
         if (is_string($birthday)){

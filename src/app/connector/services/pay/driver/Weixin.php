@@ -26,9 +26,15 @@ class Weixin implements PayPort
     protected $name = '微信';
     protected $sandbox = false;
     protected $openid;
+    protected $notifyUrl;
 
     public function setOpenID(string $openid) : Weixin {
         $this->openid = $openid;
+        return $this;
+    }
+
+    public function setNotifyUrl(string $notifyUrl) : Weixin {
+        $this->notifyUrl = $notifyUrl;
         return $this;
     }
 
@@ -131,11 +137,15 @@ class Weixin implements PayPort
         ];
         $config['sandbox'] = $this->sandbox;
         $config['notify_url'] = $this->getNotifyUrl();
+        halt($config);
         return $config;
     }
 
     protected function getNotifyUrl(){
-        return Request::domain().'/order/notify';
+        if (is_null($this->notifyUrl)){
+            return Request::domain().'/order/notify';
+        }
+        return $this->notifyUrl;
     }
 
     protected function getAppClient() : Application {
