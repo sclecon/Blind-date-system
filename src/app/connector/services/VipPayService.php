@@ -14,8 +14,8 @@ class VipPayService
     use BaseModelService;
 
     public function pay(string $vip_id, string $user_id, string $name, string $days, string $numbers, string $total_fee, string $code){
-        # $openid = (new WxAppService())->getOpenID($code);
-        $openid = 'ovuZIwgm0P38tOUj8jdmfJwlvCug';
+        $openid = (new WxAppService())->getOpenID($code);
+        # $openid = 'ovuZIwgm0P38tOUj8jdmfJwlvCug';
         $orderData = $this->createOrderData($vip_id, $user_id, $name, $days, $numbers, $total_fee);
         $notifyUrl = Request::domain().'/vip/pay/notify';
         $payConfig = (new PaymentService())
