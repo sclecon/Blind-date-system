@@ -19,10 +19,13 @@ class EventService
             $response = $response->where('flag', $flag);
         }
         $city = htmlspecialchars_decode($city);
-        $city = json_decode($city, true) ?: [];
-        $city = isset($city['name']) ? $city['name'] : '';
-        $city = explode(' ', $city);
-        $city = $city[0] ?: false;
+        $city = json_decode($city, true) ?: $city;
+        if (is_array($city)){
+            $city = isset($city['name']) ? $city['name'] : '';
+            $city = explode(' ', $city);
+            $city = $city[0] ?: false;
+        }
+
         return $response
             ->where(function ($query) use ($city) {
                 if ($city !== false){
@@ -30,7 +33,7 @@ class EventService
                 }
             })
             ->page($page, $number)
-            ->field('event_id, image, subject, remark, start_time, over_time, flag, total_fee, address')
+            ->field('event_id, image, subject, remark, start_time, over_time, flag, total_fee, address, city')
             ->select();
     }
 
