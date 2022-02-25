@@ -179,6 +179,11 @@ class UserService
         $city = explode(' ', $city);
         $city = $city[0] ?: false;
         $users = $this->userModel
+            ->where(function ($query){
+                $query->where('username', '<>', '');
+                $query->where('birthday', '<>', null);
+                $query->where('height', '<>', null);
+            })
             ->where('sex', $sex)
             ->where(function ($query) use ($city) {
                 if ($city !== false){
