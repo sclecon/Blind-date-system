@@ -29,6 +29,7 @@ class EventService
         return $response
             ->where(function ($query) use ($city) {
                 if ($city !== false){
+                    $city = str_replace('市', '', $city);
                     $query->where('city', 'like', "%{$city}%");
                 }
             })
@@ -40,7 +41,7 @@ class EventService
     public function detail(string $event_id){
         $response = $this->getModel()
             ->where('event_id', $event_id)
-            ->field('event_id, image, subject, remark, message, start_time, over_time, flag, total_fee, address')
+            ->field('event_id, image, subject, remark, message, start_time, over_time, flag, total_fee, address, city')
             ->find();
         if (is_null($response)){
             throw new HandleException('活动不存在');
