@@ -12,10 +12,17 @@ class CircleJoinService
 
     use BaseModelService;
 
-    public function myJoin(string $user_id){
+    public function myJoin(string $user_id) : array {
         return $this->getModel()
             ->where('user_id', $user_id)
-            ->where('status', '<>', 0)
+            ->where('status', '=', 2)
+            ->column('circle_id');
+    }
+
+    public function myJoinIng(string $user_id) : array {
+        return $this->getModel()
+            ->where('user_id', $user_id)
+            ->where('status', '=', 1)
             ->column('circle_id');
     }
 

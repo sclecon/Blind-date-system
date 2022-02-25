@@ -38,8 +38,15 @@ class CircleService
             ->order('circle_id', 'desc')
             ->select();
         $userJoin = $this->join->myJoin($user_id);
+        $userJoinIng = $this->join->myJoinIng($user_id);
         foreach ($data as $key => $datum){
-            $data[$key]->isJoin = in_array($datum->circle_id, $userJoin) ? 1 : 0;
+            if (in_array($datum->circle_id, $userJoin)){
+                $data[$key]->isJoin = 2;
+            } else if (in_array($datum->circle_id, $userJoinIng)) {
+                $data[$key]->isJoin = 1;
+            } else {
+                $data[$key]->isJoin = 0;
+            }
         }
         return $data;
     }
