@@ -22,6 +22,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     {type: 'checkbox'},
                     {field: 'circle_id', title: '数据ID'},
                     {field: 'name', title: '圈子名称'},
+                    {field: 'image', title: '封面图', templet: ea.table.image},
                     {field: 'intro', title: '圈子说明'},
                     {field: 'weight', title: '权重'},
                     {field: 'create_time', title: '创建时间'},

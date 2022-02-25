@@ -7,10 +7,22 @@
                 <input type="text" name="name" class="layui-input" lay-verify="required" placeholder="请输入圈子名称" value="">
             </div>
         </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">圈子封面图</label>
+            <div class="layui-input-block layuimini-upload">
+                <input name="image" class="layui-input layui-col-xs6" lay-verify="required"  placeholder="请上传图片" value="">
+                <div class="layuimini-upload-btn">
+                    <span><a class="layui-btn" data-upload="image" data-upload-number="one" data-upload-exts="png|jpg|ico|jpeg" data-upload-icon="image"><i class="fa fa-upload"></i> 上传</a></span>
+                    <span><a class="layui-btn layui-btn-normal" id="select_image" data-upload-select="image" data-upload-number="one" data-upload-mimetype="image/*"><i class="fa fa-list"></i> 选择</a></span>
+                </div>
+            </div>
+        </div>
+
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">圈子说明</label>
             <div class="layui-input-block">
-                <textarea name="intro" class="layui-textarea" lay-verify="required" placeholder="请输入圈子说明">1</textarea>
+                <textarea name="intro" class="layui-textarea" lay-verify="required" placeholder="请输入圈子说明"></textarea>
             </div>
         </div>
         <div class="layui-form-item">

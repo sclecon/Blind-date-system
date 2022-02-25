@@ -243,3 +243,5 @@ ALTER TABLE `ea_circle` CHANGE `join` `join` INT NOT NULL COMMENT '加入人数 
 ALTER TABLE `ea_circle` CHANGE `join` `join` INT NOT NULL DEFAULT '0' COMMENT '加入人数 {text}';
 
 ALTER TABLE `ea_event` ADD `city` VARCHAR(64) NOT NULL COMMENT '城市 {text}' AFTER `total_fee`;
+
+ALTER TABLE `ea_circle` ADD `image` VARCHAR(255) NULL DEFAULT NULL COMMENT '封面图 {image}' AFTER `intro`;

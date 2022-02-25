@@ -32,6 +32,7 @@ class CircleService
             ->field('circle_id')
             ->field('name')
             ->field('intro')
+            ->field('image')
             ->page($page, $number)
             ->order('weight', 'desc')
             ->order('circle_id', 'desc')
